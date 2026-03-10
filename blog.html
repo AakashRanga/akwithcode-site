@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -22,305 +28,430 @@
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>.glass-nav {
-    background: rgba(18, 11, 7, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 106, 0, 0.2)
-    }
-.vintage-paper {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAWRxCASOpeVVqqUtyKEsTiHJvcNzCysW3F4tCZuj4PJSAqN74lCUj4FwazVTM0_K_2xyJ79ncTgQxeBKTCWrHfNWXYwNBlmiEUZRc_GjS1sr3jaSYLrBSw1X7ko4i7ZTWSGa6VucwGuddSOV0AkPvuThRoZPXeiptS_EjGD3EP3-xxKHZmiCvyocPKD019cHAvvwl5SZhw1cHayTdo45dFVnZ27pWkek8SeycNYq0-16COo5RHSfNweC8aypR_VWRzJKM03vS7Hcw)
-    }
-.glow-border {
-    box-shadow: 0 0 15px rgba(255, 106, 0, 0.15)
-    }
-.sticker-label {
-    transform: rotate(-2deg);
-    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2)
-    }
-.title-underline {
-    background: linear-gradient(90deg, #ff6a00 0%, transparent 100%);
-    height: 4px;
-    width: 100%;
-    display: block;
-    margin-top: 4px
-    }</style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white">
-<!-- Sticky Glassmorphism Navbar -->
-<nav class="fixed top-0 w-full z-50 glass-nav">
-<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<div class="flex items-center gap-12">
-<div class="flex items-center gap-3">
-<div class="bg-primary p-1.5 rounded-lg text-background-dark">
-<span class="material-symbols-outlined font-bold">terminal</span>
-</div>
-<h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK <span class="text-primary">WITH</span> CODE</h1>
-</div>
-<div class="hidden md:flex items-center gap-8">
-<a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#">Home</a>
-<a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#">Courses</a>
-<a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors" href="#">Topics</a>
-<a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors text-primary border-b-2 border-primary" href="#">Blog</a>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<div class="relative group">
-<div class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-<button class="relative bg-background-dark p-2 rounded-full border border-primary/30 flex items-center justify-center">
-<span class="material-symbols-outlined text-primary">search</span>
-</button>
-</div>
-<button class="bg-primary text-background-dark px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-tighter hover:scale-105 transition-transform">
-                    Join Community
-                </button>
-</div>
-</div>
-</nav>
-<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-<!-- Hero Section: Featured Article -->
-<section class="relative mb-20 group">
-<div class="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent-red/10 rounded-xl blur-3xl opacity-30"></div>
-<div class="relative bg-slate-900/40 rounded-xl overflow-hidden border border-white/5 flex flex-col lg:flex-row min-h-[500px]">
-<div class="lg:w-3/5 relative overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
-<div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
-<div class="relative w-full h-full overflow-hidden group/carousel">
-<!-- Carousel Wrapper -->
-<div class="flex w-full h-full transition-transform duration-700 ease-in-out" id="heroCarousel">
-<!-- Slide 1: Live Workshop -->
-<div class="min-w-full relative h-full">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
-<div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
-<img alt="Modern Tech Stack" class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxrTaQUVWXSvHuwdJ0ddxtoC8GBNlfgAK-nonhoHpwns6MdusjUbYkEwEpJJKT-UFBH4gx_lah3zgC_UqX1jGJ6ntlezi9-ZQ6V5DbQ6Glmu5YmdGAjZ4JsXBA30YgVk8Z0KDCjDd5FIzJOZkJVsU_IoAZNhPEmft7mOkT4CtJc8GZ5ezPUWKZNZFQrAMlEDQTZOrtdnBNEo_4nis5B36IMJV7nAs_QlDGJ4xMhSpen2WfmgY6kQTCFDjPzGTnadkWFzC2kPfKNq0"/>
-<div class="absolute top-16 left-6 z-20">
-<span class="bg-accent-red text-white px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Live Workshop</span>
-</div>
-</div>
-<!-- Slide 2: Upcoming Event -->
-<div class="min-w-full relative h-full">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
-<div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
-<img alt="Retro Hardware Event" class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOkI-tSJYi1qbZsuQtEKd0nbRdxL5_jdj3ixwvd2NBwlVEdcagqNPef7xjpz83vz15e8yBNSc_JesUyT6c8pdOGTHR64S_qFEAdWrcV3KihGA4Frie9yu2JXtTXHO4vnAZAw-YGJpuNFpz0g-gaLH-vBSL-cqPmolrlBBGUsDRdy5p_f33bkH7mPKOT7rAwBjUeXj486CAiOUppQsAttLikpQpL8so2bQfArXqAfdhu0OTZeizg2bRC-G5cz72S1SwxFATWRAvS0"/>
-<div class="absolute top-16 left-6 z-20">
-<span class="bg-white text-background-dark px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Upcoming Event</span>
-</div>
-</div>
-<!-- Slide 3: Live Session -->
-<div class="min-w-full relative h-full">
-<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
-<div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
-<img alt="Scalable API Architecture" class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1lGbQmdvjfN943w_pm4tbjKUr8TAfzc4bHoi-v2-3aoOOcdgYTqmzg3f41Vss_QweHa-2QGyvIXwbw4c29xf34SFi2HQL5tpTUubW6E3ZmwVGY9TZFpn8okoTFf-zdRv8DVhI2rmUSo8QN_k213eEy_4GZOkCTNpJMHgFuZKIJKjr1gMfMrS8BnwQQ3E5KcxMx6tQ87G8dLur2abdpLW1QzJ-Rndi3l3aB5RWGouU08aM-_8yTrQC0aLS4l83u662zQgpEIF8SpY"/>
-<div class="absolute top-16 left-6 z-20">
-<span class="bg-primary text-background-dark px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Live Session</span>
-</div>
-</div>
-</div>
-<!-- Carousel Indicators -->
-<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
-<button class="w-2 h-2 rounded-full bg-primary/40 hover:bg-primary transition-colors"></button>
-<button class="w-2 h-2 rounded-full bg-white/20 hover:bg-primary transition-colors"></button>
-<button class="w-2 h-2 rounded-full bg-white/20 hover:bg-primary transition-colors"></button>
-</div>
-<!-- Basic Autoplay Script Simulation via CSS Animation on the container if needed, but for visual mockup static indicators work -->
-<style>
-        @keyframes slide-hero {
-            0%, 25% { transform: translateX(0); }
-            33%, 58% { transform: translateX(-100%); }
-            66%, 91% { transform: translateX(-200%); }
-            100% { transform: translateX(0); }
+    <style>
+        .glass-nav {
+            background: rgba(18, 11, 7, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 106, 0, 0.2)
         }
-        #heroCarousel {
-            animation: slide-hero 15s infinite ease-in-out;
+
+        .vintage-paper {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAWRxCASOpeVVqqUtyKEsTiHJvcNzCysW3F4tCZuj4PJSAqN74lCUj4FwazVTM0_K_2xyJ79ncTgQxeBKTCWrHfNWXYwNBlmiEUZRc_GjS1sr3jaSYLrBSw1X7ko4i7ZTWSGa6VucwGuddSOV0AkPvuThRoZPXeiptS_EjGD3EP3-xxKHZmiCvyocPKD019cHAvvwl5SZhw1cHayTdo45dFVnZ27pWkek8SeycNYq0-16COo5RHSfNweC8aypR_VWRzJKM03vS7Hcw)
+        }
+
+        .glow-border {
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.15)
+        }
+
+        .sticker-label {
+            transform: rotate(-2deg);
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2)
+        }
+
+        .title-underline {
+            background: linear-gradient(90deg, #ff6a00 0%, transparent 100%);
+            height: 4px;
+            width: 100%;
+            display: block;
+            margin-top: 4px
         }
     </style>
-</div>
-<div class="absolute top-6 left-6 z-20">
-<span class="bg-primary text-background-dark px-4 py-1 font-bold text-xs uppercase tracking-widest sticker-label inline-block">Featured Deep Dive</span>
-</div>
-</div>
-<div class="lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center vintage-paper bg-background-dark/80">
-<p class="text-primary font-bold text-sm tracking-[0.3em] mb-4">ARTIFICIAL INTELLIGENCE</p>
-<h2 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white">
+    <!-- Sticky Glassmorphism Navbar -->
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <div class="flex items-center gap-3">
+                    <div class="bg-primary p-1.5 rounded-lg text-background-dark">
+                        <span class="material-symbols-outlined font-bold">terminal</span>
+                    </div>
+                    <h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK <span
+                            class="text-primary">WITH</span> CODE</h1>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="#">Home</a>
+                    <a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="#">Courses</a>
+                    <a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors"
+                        href="#">Topics</a>
+                    <a class="text-sm font-semibold uppercase tracking-widest hover:text-primary transition-colors text-primary border-b-2 border-primary"
+                        href="#">Blog</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative group">
+                    <div
+                        class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
+                    </div>
+                    <button
+                        class="relative bg-background-dark p-2 rounded-full border border-primary/30 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">search</span>
+                    </button>
+                </div>
+                <button
+                    class="bg-primary text-background-dark px-6 py-2 rounded-lg font-bold text-sm uppercase tracking-tighter hover:scale-105 transition-transform">
+                    Join Community
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <!-- Hero Section: Featured Article -->
+        <section class="relative mb-20 group">
+            <div
+                class="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent-red/10 rounded-xl blur-3xl opacity-30">
+            </div>
+            <div
+                class="relative bg-slate-900/40 rounded-xl overflow-hidden border border-white/5 flex flex-col lg:flex-row min-h-[500px]">
+                <div class="lg:w-3/5 relative overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10">
+                    </div>
+                    <div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
+                    <div class="relative w-full h-full overflow-hidden group/carousel">
+                        <!-- Carousel Wrapper -->
+                        <div class="flex w-full h-full transition-transform duration-700 ease-in-out" id="heroCarousel">
+                            <!-- Slide 1: Live Workshop -->
+                            <div class="min-w-full relative h-full">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10">
+                                </div>
+                                <div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
+                                <img alt="Modern Tech Stack"
+                                    class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxrTaQUVWXSvHuwdJ0ddxtoC8GBNlfgAK-nonhoHpwns6MdusjUbYkEwEpJJKT-UFBH4gx_lah3zgC_UqX1jGJ6ntlezi9-ZQ6V5DbQ6Glmu5YmdGAjZ4JsXBA30YgVk8Z0KDCjDd5FIzJOZkJVsU_IoAZNhPEmft7mOkT4CtJc8GZ5ezPUWKZNZFQrAMlEDQTZOrtdnBNEo_4nis5B36IMJV7nAs_QlDGJ4xMhSpen2WfmgY6kQTCFDjPzGTnadkWFzC2kPfKNq0" />
+                                <div class="absolute top-16 left-6 z-20">
+                                    <span
+                                        class="bg-accent-red text-white px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Live
+                                        Workshop</span>
+                                </div>
+                            </div>
+                            <!-- Slide 2: Upcoming Event -->
+                            <div class="min-w-full relative h-full">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10">
+                                </div>
+                                <div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
+                                <img alt="Retro Hardware Event"
+                                    class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOkI-tSJYi1qbZsuQtEKd0nbRdxL5_jdj3ixwvd2NBwlVEdcagqNPef7xjpz83vz15e8yBNSc_JesUyT6c8pdOGTHR64S_qFEAdWrcV3KihGA4Frie9yu2JXtTXHO4vnAZAw-YGJpuNFpz0g-gaLH-vBSL-cqPmolrlBBGUsDRdy5p_f33bkH7mPKOT7rAwBjUeXj486CAiOUppQsAttLikpQpL8so2bQfArXqAfdhu0OTZeizg2bRC-G5cz72S1SwxFATWRAvS0" />
+                                <div class="absolute top-16 left-6 z-20">
+                                    <span
+                                        class="bg-white text-background-dark px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Upcoming
+                                        Event</span>
+                                </div>
+                            </div>
+                            <!-- Slide 3: Live Session -->
+                            <div class="min-w-full relative h-full">
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10">
+                                </div>
+                                <div class="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
+                                <img alt="Scalable API Architecture"
+                                    class="w-full h-full object-cover grayscale group-hover/carousel:grayscale-0 transition-all duration-700"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1lGbQmdvjfN943w_pm4tbjKUr8TAfzc4bHoi-v2-3aoOOcdgYTqmzg3f41Vss_QweHa-2QGyvIXwbw4c29xf34SFi2HQL5tpTUubW6E3ZmwVGY9TZFpn8okoTFf-zdRv8DVhI2rmUSo8QN_k213eEy_4GZOkCTNpJMHgFuZKIJKjr1gMfMrS8BnwQQ3E5KcxMx6tQ87G8dLur2abdpLW1QzJ-Rndi3l3aB5RWGouU08aM-_8yTrQC0aLS4l83u662zQgpEIF8SpY" />
+                                <div class="absolute top-16 left-6 z-20">
+                                    <span
+                                        class="bg-primary text-background-dark px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Live
+                                        Session</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel Indicators -->
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+                            <button
+                                class="w-2 h-2 rounded-full bg-primary/40 hover:bg-primary transition-colors"></button>
+                            <button
+                                class="w-2 h-2 rounded-full bg-white/20 hover:bg-primary transition-colors"></button>
+                            <button
+                                class="w-2 h-2 rounded-full bg-white/20 hover:bg-primary transition-colors"></button>
+                        </div>
+                        <!-- Basic Autoplay Script Simulation via CSS Animation on the container if needed, but for visual mockup static indicators work -->
+                        <style>
+                            @keyframes slide-hero {
+
+                                0%,
+                                25% {
+                                    transform: translateX(0);
+                                }
+
+                                33%,
+                                58% {
+                                    transform: translateX(-100%);
+                                }
+
+                                66%,
+                                91% {
+                                    transform: translateX(-200%);
+                                }
+
+                                100% {
+                                    transform: translateX(0);
+                                }
+                            }
+
+                            #heroCarousel {
+                                animation: slide-hero 15s infinite ease-in-out;
+                            }
+                        </style>
+                    </div>
+                    <div class="absolute top-6 left-6 z-20">
+                        <span
+                            class="bg-primary text-background-dark px-4 py-1 font-bold text-xs uppercase tracking-widest sticker-label inline-block">Featured
+                            Deep Dive</span>
+                    </div>
+                </div>
+                <div class="lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center vintage-paper bg-background-dark/80">
+                    <p class="text-primary font-bold text-sm tracking-[0.3em] mb-4">ARTIFICIAL INTELLIGENCE</p>
+                    <h2 class="text-4xl lg:text-5xl font-bold leading-tight mb-6">
                         Build A <span class="italic">Google Gemini</span> Chatbot with Modern Tech
                         <span class="title-underline"></span>
-</h2>
-<p class="text-slate-400 text-lg mb-8 font-light leading-relaxed">
-                        Master the integration of next-gen Large Language Models into high-performance web applications using HTML5, Tailwind, and JavaScript.
+                    </h2>
+                    <p class="text-slate-400 text-lg mb-8 font-light leading-relaxed">
+                        Master the integration of next-gen Large Language Models into high-performance web applications
+                        using HTML5, Tailwind, and JavaScript.
                     </p>
-<div class="flex items-center gap-6">
-<button class="bg-primary text-background-dark px-8 py-3 rounded-lg font-bold text-base uppercase hover:bg-white transition-colors">
+                    <div class="flex items-center gap-6">
+                        <button
+                            class="bg-primary text-background-dark px-8 py-3 rounded-lg font-bold text-base uppercase hover:bg-white transition-colors">
                             Read Article
                         </button>
-<span class="text-slate-500 text-sm font-medium flex items-center gap-2">
-<span class="material-symbols-outlined text-sm">schedule</span> 12 min read
+                        <span class="text-slate-500 text-sm font-medium flex items-center gap-2">
+                            <span class="material-symbols-outlined text-sm">schedule</span> 12 min read
                         </span>
-</div>
-</div>
-</div>
-</section>
-<!-- Main Grid & Sidebar Layout -->
-<div class="flex flex-col lg:flex-row gap-12">
-<!-- Blog Feed -->
-<div class="lg:w-2/3 space-y-12">
-<div class="flex items-center justify-between border-b border-white/10 pb-4">
-<h3 class="text-2xl font-bold uppercase tracking-tighter">Latest Transmissions</h3>
-<div class="flex gap-4">
-<button class="text-primary text-sm font-bold uppercase">View All</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Blog Card 1 -->
-<div class="group cursor-pointer">
-<div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
-<img alt="Retro Computing Hardware" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Vintage computer components and glowing wires" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOkI-tSJYi1qbZsuQtEKd0nbRdxL5_jdj3ixwvd2NBwlVEdcagqNPef7xjpz83vz15e8yBNSc_JesUyT6c8pdOGTHR64S_qFEAdWrcV3KihGA4Frie9yu2JXtTXHO4vnAZAw-YGJpuNFpz0g-gaLH-vBSL-cqPmolrlBBGUsDRdy5p_f33bkH7mPKOT7rAwBjUeXj486CAiOUppQsAttLikpQpL8so2bQfArXqAfdhu0OTZeizg2bRC-G5cz72S1SwxFATWRAvS0"/>
-<div class="absolute bottom-2 right-2">
-<span class="bg-accent-red text-white px-3 py-1 text-[10px] font-bold uppercase sticker-label">Hardcore Dev</span>
-</div>
-</div>
-<p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Cybersecurity</p>
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">The Rise of Retro Computing in Modern DevStacks</h4>
-<p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Why terminal-first workflows and vintage aesthetics are making a massive comeback in the Silicon Valley.</p>
-<div class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-<span>May 12, 2024</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span>5 min read</span>
-</div>
-</div>
-<!-- Blog Card 2 -->
-<div class="group cursor-pointer">
-<div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
-<img alt="React and Code" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract React logo with blue neon glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1lGbQmdvjfN943w_pm4tbjKUr8TAfzc4bHoi-v2-3aoOOcdgYTqmzg3f41Vss_QweHa-2QGyvIXwbw4c29xf34SFi2HQL5tpTUubW6E3ZmwVGY9TZFpn8okoTFf-zdRv8DVhI2rmUSo8QN_k213eEy_4GZOkCTNpJMHgFuZKIJKjr1gMfMrS8BnwQQ3E5KcxMx6tQ87G8dLur2abdpLW1QzJ-Rndi3l3aB5RWGouU08aM-_8yTrQC0aLS4l83u662zQgpEIF8SpY"/>
-<div class="absolute bottom-2 right-2">
-<span class="bg-primary text-background-dark px-3 py-1 text-[10px] font-bold uppercase sticker-label">Architecture</span>
-</div>
-</div>
-<p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Development</p>
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Building Scalable APIs for the 2025 Web</h4>
-<p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Navigating the complex landscape of serverless functions and edge computing for ultra-fast response times.</p>
-<div class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-<span>May 10, 2024</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span>8 min read</span>
-</div>
-</div>
-<!-- Blog Card 3 -->
-<div class="group cursor-pointer">
-<div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
-<img alt="Graphic Design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Minimalist geometric shapes with grain texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4WSvRcQOTR8w-JcfXmHSkAvONljW9PkGIk3nz8rH_MjHNTxdMvMbDfL7phudlQTAA7AY21-DwMiRgv-W-FwCDEYSKq4-ddPUOmDPx2Le0m6cM1BMJuN9cWGETiWYGWZPuY5saK2rBC7TGrnACZMsM4tYtP9Wf0YJ4vNQY1AxQgs5qcUfBmql4fb8J9mJpM4TIceChXUZ0Zy4gAoavNANrCPFcyEr_q0fn8jdgOF5Q4-SO526zbQy-jCdoYGeJuxQefpRnarNkTfE"/>
-<div class="absolute bottom-2 right-2">
-<span class="bg-white text-background-dark px-3 py-1 text-[10px] font-bold uppercase sticker-label">Trending</span>
-</div>
-</div>
-<p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Design</p>
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Mastering CSS Grid: The Editorial Layout</h4>
-<p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Pushing the boundaries of web typography and layout using advanced CSS techniques.</p>
-<div class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-<span>May 08, 2024</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span>6 min read</span>
-</div>
-</div>
-<!-- Blog Card 4 -->
-<div class="group cursor-pointer">
-<div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
-<img alt="Motherboard Circuitry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Macro photo of circuit board with orange lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_JstRuuAQcs5ijwxXAnkI4EM_JMpIc0A5bLWCd7I6SmGKlrdpTvk0JQ7HQmRiSW48vNDgldUtykgNFShOnM71hyGB18yhaQTWd2avuJhJmQ712CEE6gBWnJ0qjvbxWzSLK15iKhUszd62U0AH3DRyIsbeehWRttSGLWBn7Yl-j0r1oc5CqFxOOD8y9OcP7t-vs_3n6sSKtJix_IKeGnELybZpqI3VV_zgbdMTnnPN9YMFYRYZwuo-OQhvagxC_Ma0xKcCBf6Eo04"/>
-<div class="absolute bottom-2 right-2">
-<span class="bg-accent-red text-white px-3 py-1 text-[10px] font-bold uppercase sticker-label">New Tech</span>
-</div>
-</div>
-<p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Future Tech</p>
-<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Quantum Supremacy: What it Means for Web Encryption</h4>
-<p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">A deep dive into post-quantum cryptography and preparing your applications for the next decade.</p>
-<div class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-<span>May 05, 2024</span>
-<span class="w-1 h-1 bg-primary rounded-full"></span>
-<span>15 min read</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Sidebar -->
-<aside class="lg:w-1/3 space-y-12">
-<!-- Trending Topics -->
-<div class="vintage-paper bg-primary/5 p-8 rounded-xl border border-primary/20">
-<h3 class="text-xl font-bold uppercase tracking-tighter mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">local_fire_department</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Main Grid & Sidebar Layout -->
+        <div class="flex flex-col lg:flex-row gap-12">
+            <!-- Blog Feed -->
+            <div class="lg:w-2/3 space-y-12">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                    <h3 class="text-2xl font-bold uppercase tracking-tighter">Latest Transmissions</h3>
+                    <div class="flex gap-4">
+                        <button class="text-primary text-sm font-bold uppercase">View All</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Blog Card 1 -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
+                            <img alt="Retro Computing Hardware"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Vintage computer components and glowing wires"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMOkI-tSJYi1qbZsuQtEKd0nbRdxL5_jdj3ixwvd2NBwlVEdcagqNPef7xjpz83vz15e8yBNSc_JesUyT6c8pdOGTHR64S_qFEAdWrcV3KihGA4Frie9yu2JXtTXHO4vnAZAw-YGJpuNFpz0g-gaLH-vBSL-cqPmolrlBBGUsDRdy5p_f33bkH7mPKOT7rAwBjUeXj486CAiOUppQsAttLikpQpL8so2bQfArXqAfdhu0OTZeizg2bRC-G5cz72S1SwxFATWRAvS0" />
+                            <div class="absolute bottom-2 right-2">
+                                <span
+                                    class="bg-accent-red text-white px-3 py-1 text-[10px] font-bold uppercase sticker-label">Hardcore
+                                    Dev</span>
+                            </div>
+                        </div>
+                        <p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Cybersecurity</p>
+                        <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">The Rise of Retro
+                            Computing in Modern DevStacks</h4>
+                        <p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Why terminal-first workflows and
+                            vintage aesthetics are making a massive comeback in the Silicon Valley.</p>
+                        <div
+                            class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                            <span>May 12, 2024</span>
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            <span>5 min read</span>
+                        </div>
+                    </div>
+                    <!-- Blog Card 2 -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
+                            <img alt="React and Code"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Abstract React logo with blue neon glow"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1lGbQmdvjfN943w_pm4tbjKUr8TAfzc4bHoi-v2-3aoOOcdgYTqmzg3f41Vss_QweHa-2QGyvIXwbw4c29xf34SFi2HQL5tpTUubW6E3ZmwVGY9TZFpn8okoTFf-zdRv8DVhI2rmUSo8QN_k213eEy_4GZOkCTNpJMHgFuZKIJKjr1gMfMrS8BnwQQ3E5KcxMx6tQ87G8dLur2abdpLW1QzJ-Rndi3l3aB5RWGouU08aM-_8yTrQC0aLS4l83u662zQgpEIF8SpY" />
+                            <div class="absolute bottom-2 right-2">
+                                <span
+                                    class="bg-primary text-background-dark px-3 py-1 text-[10px] font-bold uppercase sticker-label">Architecture</span>
+                            </div>
+                        </div>
+                        <p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Development</p>
+                        <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Building Scalable
+                            APIs for the 2025 Web</h4>
+                        <p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Navigating the complex landscape
+                            of serverless functions and edge computing for ultra-fast response times.</p>
+                        <div
+                            class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                            <span>May 10, 2024</span>
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                    <!-- Blog Card 3 -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
+                            <img alt="Graphic Design"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Minimalist geometric shapes with grain texture"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4WSvRcQOTR8w-JcfXmHSkAvONljW9PkGIk3nz8rH_MjHNTxdMvMbDfL7phudlQTAA7AY21-DwMiRgv-W-FwCDEYSKq4-ddPUOmDPx2Le0m6cM1BMJuN9cWGETiWYGWZPuY5saK2rBC7TGrnACZMsM4tYtP9Wf0YJ4vNQY1AxQgs5qcUfBmql4fb8J9mJpM4TIceChXUZ0Zy4gAoavNANrCPFcyEr_q0fn8jdgOF5Q4-SO526zbQy-jCdoYGeJuxQefpRnarNkTfE" />
+                            <div class="absolute bottom-2 right-2">
+                                <span
+                                    class="bg-white text-background-dark px-3 py-1 text-[10px] font-bold uppercase sticker-label">Trending</span>
+                            </div>
+                        </div>
+                        <p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Design</p>
+                        <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Mastering CSS
+                            Grid: The Editorial Layout</h4>
+                        <p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">Pushing the boundaries of web
+                            typography and layout using advanced CSS techniques.</p>
+                        <div
+                            class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                            <span>May 08, 2024</span>
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            <span>6 min read</span>
+                        </div>
+                    </div>
+                    <!-- Blog Card 4 -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-lg overflow-hidden mb-4 border border-white/5">
+                            <img alt="Motherboard Circuitry"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Macro photo of circuit board with orange lights"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_JstRuuAQcs5ijwxXAnkI4EM_JMpIc0A5bLWCd7I6SmGKlrdpTvk0JQ7HQmRiSW48vNDgldUtykgNFShOnM71hyGB18yhaQTWd2avuJhJmQ712CEE6gBWnJ0qjvbxWzSLK15iKhUszd62U0AH3DRyIsbeehWRttSGLWBn7Yl-j0r1oc5CqFxOOD8y9OcP7t-vs_3n6sSKtJix_IKeGnELybZpqI3VV_zgbdMTnnPN9YMFYRYZwuo-OQhvagxC_Ma0xKcCBf6Eo04" />
+                            <div class="absolute bottom-2 right-2">
+                                <span
+                                    class="bg-accent-red text-white px-3 py-1 text-[10px] font-bold uppercase sticker-label">New
+                                    Tech</span>
+                            </div>
+                        </div>
+                        <p class="text-primary text-xs font-bold tracking-widest mb-2 uppercase">Future Tech</p>
+                        <h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Quantum Supremacy:
+                            What it Means for Web Encryption</h4>
+                        <p class="text-slate-400 text-sm line-clamp-2 mb-4 font-light">A deep dive into post-quantum
+                            cryptography and preparing your applications for the next decade.</p>
+                        <div
+                            class="flex items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
+                            <span>May 05, 2024</span>
+                            <span class="w-1 h-1 bg-primary rounded-full"></span>
+                            <span>15 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sidebar -->
+            <aside class="lg:w-1/3 space-y-12">
+                <!-- Trending Topics -->
+                <div class="vintage-paper bg-primary/5 p-8 rounded-xl border border-primary/20">
+                    <h3 class="text-xl font-bold uppercase tracking-tighter mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">local_fire_department</span>
                         Trending Topics
                     </h3>
-<div class="flex flex-wrap gap-3">
-<a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label" href="#">#JavaScript</a>
-<a class="bg-primary text-background-dark px-4 py-2 rounded text-xs font-bold uppercase tracking-widest sticker-label" href="#">#LLMs</a>
-<a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label" href="#">#TailwindCSS</a>
-<a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label" href="#">#VintageDesign</a>
-<a class="bg-accent-red text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest sticker-label" href="#">#CyberpunkUI</a>
-<a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label" href="#">#ReactQuery</a>
-</div>
-</div>
-<!-- Recent Articles List -->
-<div class="space-y-6">
-<h3 class="text-xl font-bold uppercase tracking-tighter border-l-4 border-primary pl-4">Popular This Week</h3>
-<div class="group flex gap-4 items-start cursor-pointer">
-<div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
-<img alt="Github Octocat" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Purple neon Github 3D illustration" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdl1jbDpso2KHoGdlsnp9Tz3JW-r1kAwTBO_XZOYgZv4swMXcKgK0IPUnCKjivKDk08cPmcwVXYLAfcQvZtRm15J9sm55pr8n9quxTjazxQpMTLcTRe6NUenzfYZb2MCnISX0u6OgZAS1cy4XqKHn-U4F-hX9vPPkJlssA0Es4hYlu7hX7o5T6_yi-ZcijY7lCRBsL0547XJweICmIxCa6OuPikvneTJSqw8o_VFE9zz0nbpm4dugKrCRpiu_ZxJpvcRSrgYBQZk"/>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">GitHub Actions for Massive Scalability</h5>
-<p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">4 min read</p>
-</div>
-</div>
-<div class="group flex gap-4 items-start cursor-pointer">
-<div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
-<img alt="Code Editor" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Close up of VS Code with dark theme" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3D1JzTZ5U8tmhSUx0_o8NYJ-M2xo-BEZru2FuPDNslTph4K1sIB1i349dUJSFAd3veAAjkChVhJkVEKJRP6JLdADtCduZEon6OgElcCebKt5wwynY0xjjIrKKjMjtrrF3049m3pocZXGqVU-rH-W_8uV2AcWp43T70MkxQ-aoyWKf_a3uGA24JWv5RjmZrJ7bTnJe5l8Yu8KSCeH2NVLq-3aLyHOngbgrn3dcudvV6qHIL_P7CtCxGtqwzv4YSBPw-BD2m03eldk"/>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">The Perfect VS Code Setup in 2024</h5>
-<p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">7 min read</p>
-</div>
-</div>
-<div class="group flex gap-4 items-start cursor-pointer">
-<div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
-<img alt="C++ code" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Abstract glowing lines representing data streams" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASQHctKW9In3jdYHSEBrf35Dbi8CYrD_Ddbab31R83g3lgaDNzEgCLqpLtkoJIge2DxEN8fT2RVCwHC53R5r92246FwOLbJk_BXt_ul88pn3CJOOa7P2-KIvymkGBRLDKHaPsxwI3VYITr8GJDeFRq3UI8zbfNp7TmGO4Tf1NcKThCWIfKMXpa_MVff2k08wnI8jAQM4JKyNAF3Aai4FxOp4kDx7w0GnPrsCZCmao10YGCfGtmLGXaGetqGNLaXyk8lDGmafjLUNo"/>
-</div>
-<div>
-<h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">Why Senior Engineers are Learning Rust</h5>
-<p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">10 min read</p>
-</div>
-</div>
-</div>
-<!-- Newsletter Card -->
-<div class="relative p-8 rounded-xl overflow-hidden bg-background-dark border-2 border-primary/50 glow-border">
-<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary rounded-full blur-3xl opacity-20"></div>
-<p class="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-2">JOIN THE LIST</p>
-<h4 class="text-2xl font-bold mb-4 uppercase">Weekly Code Drops</h4>
-<p class="text-slate-400 text-sm mb-6 leading-relaxed">No fluff. Just hard-hitting technical deep dives and premium code snippets delivered to your inbox.</p>
-<div class="space-y-3">
-<input class="w-full bg-slate-900 border border-white/10 rounded px-4 py-3 text-xs font-bold placeholder:text-slate-700 focus:border-primary focus:ring-0 outline-none" placeholder="YOUR@EMAIL.COM" type="email"/>
-<button class="w-full bg-primary text-background-dark font-bold py-3 rounded uppercase text-xs tracking-[0.2em] hover:bg-white transition-colors">Subscribe Now</button>
-</div>
-</div>
-</aside>
-</div>
-</main>
-<!-- Swaggy Footer -->
-<footer class="bg-slate-950 border-t border-white/5 py-12">
-<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
-<div class="flex items-center gap-3">
-<div class="bg-primary/20 p-1.5 rounded text-primary">
-<span class="material-symbols-outlined font-bold">terminal</span>
-</div>
-<h2 class="text-xl font-bold tracking-tighter uppercase italic">AK <span class="text-primary">WITH</span> CODE</h2>
-</div>
-<p class="text-slate-600 text-xs font-medium uppercase tracking-widest">© 2024 Built with chaos and precision by AK.</p>
-<div class="flex gap-6">
-<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">brand_family</span></a>
-<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">rss_feed</span></a>
-<a class="text-slate-400 hover:text-primary transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-</div>
-</div>
-</footer>
-</body></html>
+                    <div class="flex flex-wrap gap-3">
+                        <a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label"
+                            href="#">#JavaScript</a>
+                        <a class="bg-primary text-background-dark px-4 py-2 rounded text-xs font-bold uppercase tracking-widest sticker-label"
+                            href="#">#LLMs</a>
+                        <a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label"
+                            href="#">#TailwindCSS</a>
+                        <a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label"
+                            href="#">#VintageDesign</a>
+                        <a class="bg-accent-red text-white px-4 py-2 rounded text-xs font-bold uppercase tracking-widest sticker-label"
+                            href="#">#CyberpunkUI</a>
+                        <a class="bg-background-dark border border-white/10 px-4 py-2 rounded text-xs font-bold uppercase tracking-widest hover:border-primary hover:text-primary transition-all sticker-label"
+                            href="#">#ReactQuery</a>
+                    </div>
+                </div>
+                <!-- Recent Articles List -->
+                <div class="space-y-6">
+                    <h3 class="text-xl font-bold uppercase tracking-tighter border-l-4 border-primary pl-4">Popular This
+                        Week</h3>
+                    <div class="group flex gap-4 items-start cursor-pointer">
+                        <div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
+                            <img alt="Github Octocat"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                                data-alt="Purple neon Github 3D illustration"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJdl1jbDpso2KHoGdlsnp9Tz3JW-r1kAwTBO_XZOYgZv4swMXcKgK0IPUnCKjivKDk08cPmcwVXYLAfcQvZtRm15J9sm55pr8n9quxTjazxQpMTLcTRe6NUenzfYZb2MCnISX0u6OgZAS1cy4XqKHn-U4F-hX9vPPkJlssA0Es4hYlu7hX7o5T6_yi-ZcijY7lCRBsL0547XJweICmIxCa6OuPikvneTJSqw8o_VFE9zz0nbpm4dugKrCRpiu_ZxJpvcRSrgYBQZk" />
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">GitHub
+                                Actions for Massive Scalability</h5>
+                            <p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">4 min read</p>
+                        </div>
+                    </div>
+                    <div class="group flex gap-4 items-start cursor-pointer">
+                        <div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
+                            <img alt="Code Editor"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                                data-alt="Close up of VS Code with dark theme"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3D1JzTZ5U8tmhSUx0_o8NYJ-M2xo-BEZru2FuPDNslTph4K1sIB1i349dUJSFAd3veAAjkChVhJkVEKJRP6JLdADtCduZEon6OgElcCebKt5wwynY0xjjIrKKjMjtrrF3049m3pocZXGqVU-rH-W_8uV2AcWp43T70MkxQ-aoyWKf_a3uGA24JWv5RjmZrJ7bTnJe5l8Yu8KSCeH2NVLq-3aLyHOngbgrn3dcudvV6qHIL_P7CtCxGtqwzv4YSBPw-BD2m03eldk" />
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">The
+                                Perfect VS Code Setup in 2024</h5>
+                            <p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">7 min read</p>
+                        </div>
+                    </div>
+                    <div class="group flex gap-4 items-start cursor-pointer">
+                        <div class="w-16 h-16 shrink-0 rounded bg-slate-800 overflow-hidden">
+                            <img alt="C++ code"
+                                class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+                                data-alt="Abstract glowing lines representing data streams"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuASQHctKW9In3jdYHSEBrf35Dbi8CYrD_Ddbab31R83g3lgaDNzEgCLqpLtkoJIge2DxEN8fT2RVCwHC53R5r92246FwOLbJk_BXt_ul88pn3CJOOa7P2-KIvymkGBRLDKHaPsxwI3VYITr8GJDeFRq3UI8zbfNp7TmGO4Tf1NcKThCWIfKMXpa_MVff2k08wnI8jAQM4JKyNAF3Aai4FxOp4kDx7w0GnPrsCZCmao10YGCfGtmLGXaGetqGNLaXyk8lDGmafjLUNo" />
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold leading-snug group-hover:text-primary transition-colors">Why
+                                Senior Engineers are Learning Rust</h5>
+                            <p class="text-[10px] text-slate-500 uppercase mt-1 tracking-widest">10 min read</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter Card -->
+                <div
+                    class="relative p-8 rounded-xl overflow-hidden bg-background-dark border-2 border-primary/50 glow-border">
+                    <div class="absolute -top-12 -right-12 w-32 h-32 bg-primary rounded-full blur-3xl opacity-20"></div>
+                    <p class="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-2">JOIN THE LIST</p>
+                    <h4 class="text-2xl font-bold mb-4 uppercase">Weekly Code Drops</h4>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">No fluff. Just hard-hitting technical deep
+                        dives and premium code snippets delivered to your inbox.</p>
+                    <div class="space-y-3">
+                        <input
+                            class="w-full bg-slate-900 border border-white/10 rounded px-4 py-3 text-xs font-bold placeholder:text-slate-700 focus:border-primary focus:ring-0 outline-none"
+                            placeholder="YOUR@EMAIL.COM" type="email" />
+                        <button
+                            class="w-full bg-primary text-background-dark font-bold py-3 rounded uppercase text-xs tracking-[0.2em] hover:bg-white transition-colors">Subscribe
+                            Now</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    <!-- Swaggy Footer -->
+    <footer class="bg-slate-950 border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <div class="bg-primary/20 p-1.5 rounded text-primary">
+                    <span class="material-symbols-outlined font-bold">terminal</span>
+                </div>
+                <h2 class="text-xl font-bold tracking-tighter uppercase italic">AK <span
+                        class="text-primary">WITH</span> CODE</h2>
+            </div>
+            <p class="text-slate-600 text-xs font-medium uppercase tracking-widest">© 2024 Built with chaos and
+                precision by AK.</p>
+            <div class="flex gap-6">
+                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                        class="material-symbols-outlined">brand_family</span></a>
+                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                        class="material-symbols-outlined">rss_feed</span></a>
+                <a class="text-slate-400 hover:text-primary transition-colors" href="#"><span
+                        class="material-symbols-outlined">alternate_email</span></a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
