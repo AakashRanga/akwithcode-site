@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Connect | AK WITH CODE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6a00",
+                        "accent": "#b30000",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#1a0f0a",
+                        "surface-dark": "#23170f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .grain-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9cAarwzuuD7FgUCbOuHxneTjJAw0-bMPFBFV7PBztj93dZnc-JSc-uP4TP6pVPkx91sxZP9r3XxCLvBfnGG_nzvJ6HpWZKEzPhAHcduetJjcbWTJQJi9pYrkg2wJ75TabTEWa6Q-RjLuGRzRU5RlC8cp4pE7MMnR_yjgA37G103xvBmNM8sH1KoX6ET1F1FGnaDHUxotWhMC7Ne9audBRnY8qts0cYRvNABEstfgH8o1In7zDinB9-F6emEc8icm1ACKa7FuENIw);
+            opacity: 0.03;
+            pointer-events: none;
+        }
+        .glow-border {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 106, 0, 0.2);
+        }
+        .glow-border:hover {
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.3);
+            border-color: #ff6a00;
+            transform: translateY(-5px);
+        }
+        .glow-input {
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .glow-input:focus {
+            box-shadow: inset 0 0 10px rgba(255, 106, 0, 0.1), 0 0 15px rgba(255, 106, 0, 0.4);
+            border-color: #ff6a00;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        
+        .vintage-label {
+            clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
+        }
+        #robot-eyes {
+            transition: transform 0.1s ease-out;
+        }
+        .btn-glow {
+            transition: all 0.3s ease;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(179, 0, 0, 0.6);
+            border-color: #ff6a00;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white min-h-screen relative overflow-x-hidden">
+    <div class="fixed inset-0 grain-overlay z-50"></div>
+    
+    <!-- Background glow effects -->
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50 animate-pulse-slow"></div>
+        <div class="absolute bottom-0 left-[-20%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] mix-blend-screen opacity-50"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 w-full border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a class="flex items-center gap-3 group" href="home.html">
+                    <div class="bg-primary p-1 rounded-sm rotate-3 group-hover:rotate-0 transition-transform">
+                        <span class="material-symbols-outlined text-background-dark font-bold text-2xl">terminal</span>
+                    </div>
+                    <h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK <span class="text-primary">WITH</span> CODE</h1>
+                </a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="home.html">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Courses
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Topics
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="blog.html">
+                        Blog
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+                    </a>
+                    <a class="text-sm font-bold uppercase tracking-widest text-primary relative group" href="connect.html">
+                        Connect
+                        <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary"></span>
+                    </a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                <!-- User Profile / Search placeholder -->
+                <div class="h-10 w-10 rounded-full border border-primary/30 overflow-hidden bg-primary/10 hover:border-primary transition-colors cursor-pointer">
+                    <img class="w-full h-full object-cover" data-alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyOQ_ZSAA5pEkjRZP0ZQlvcF4DhDWj9QyrUS4wEk4aPoNbAlmM3-Utjos8O9mbSnrJrUFmvfpIkofs2QeJIvi1-WO_vNo7qXN4nKpGtuBEh71z_aHPA_ClelcFFmB7LBbOmvPxGdO1__plnp75TFBZYAQm4zvlMub1waDnl-2Qjg4yyAemLE9R5t48LYuX3ZRqgPDsldsPOEOisUr5xniSGhp_g8BYxyMyJEZFe68k22T6tV3Ro3LmqVUKak5ftcRc-ywcMbsgvwY"/>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-16 relative z-10 hidden-overflow">
+        
+        <!-- Hero Section -->
+        <section class="max-w-4xl mx-auto text-center mb-24 reveal">
+            <div class="inline-block bg-primary/20 text-primary border border-primary/40 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,106,0,0.2)]">
+                Secure Handshake Initialization
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-8">
+                Build The <br/> <span class="text-primary underline decoration-accent decoration-4 underline-offset-8">Future</span>
+            </h1>
+            <p class="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+                Enter your parameters into the terminal below. Our intelligent systems and engineering core are ready to synchronize with your vision.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+            <!-- Left Config Sidebar / Decor -->
+            <div class="hidden lg:col-span-4 lg:flex flex-col space-y-8 reveal delay-100">
+                <div class="bg-surface-dark border border-white/5 p-6 rounded-xl shadow-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all duration-700"></div>
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-primary/20">
+                        <h3 class="text-sm font-black uppercase tracking-widest">Protocol Stats</h3>
+                        <span class="material-symbols-outlined text-primary text-xl">query_stats</span>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-[10px] text-slate-400 uppercase tracking-widest mb-1">
+                                <span>Network Load</span>
+                                <span class="text-primary font-bold">14%</span>
+                            </div>
+                            <div class="h-1 w-full bg-background-dark overflow-hidden"><div class="h-full bg-primary w-[14%] animate-pulse"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-[10px] text-slate-400 uppercase tracking-widest mb-1">
+                                <span>Core Efficiency</span>
+                                <span class="text-accent font-bold">99.9%</span>
+                            </div>
+                            <div class="h-1 w-full bg-background-dark overflow-hidden"><div class="h-full bg-accent w-[99%]"></div></div>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-white/5 text-[10px] text-slate-500 font-mono flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            SYSTEM READY TO ACCEPT NEW PROJECTS
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-primary/5 p-8 rounded-xl border border-primary/20 border-dashed hover:bg-primary/10 transition-colors">
+                    <span class="material-symbols-outlined text-primary text-4xl mb-4 block">handshake</span>
+                    <h4 class="text-xl font-black uppercase tracking-tighter italic mb-2">Direct Link</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-6">Skip the form and establish a direct encrypted link with lead architects.</p>
+                    <a href="mailto:hello@akwithcode.system" class="text-xs font-bold text-primary uppercase tracking-[0.2em] border-b border-primary/30 hover:border-primary pb-1 inline-flex items-center gap-2">
+                        Initialize Email <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="lg:col-span-8 reveal delay-200">
+                <form class="bg-surface-dark border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden group">
+                    <div class="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-all duration-1000"></div>
+                    
+                    <div class="mb-10 pb-6 border-b border-white/5 relative z-10 flex items-center gap-4">
+                        <div class="bg-primary/10 p-3 rounded-lg flex-shrink-0 text-primary">
+                            <span class="material-symbols-outlined text-2xl">terminal</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-black uppercase tracking-tighter italic">Input <span class="text-primary">Parameters</span></h2>
+                            <p class="text-xs text-slate-400 mt-1 uppercase tracking-widest">Execute Handshake Request</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <!-- Identity -->
+                        <div class="col-span-full md:col-span-1">
+                            <label class="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Target Identity</label>
+                            <input class="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm" placeholder="Full Name / Handle" type="text" required />
+                        </div>
+
+                        <!-- Comm Link -->
+                        <div class="col-span-full md:col-span-1">
+                            <label class="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Comm Link (Email)</label>
+                            <input class="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm" placeholder="encrypted@domain.com" type="email" required />
+                        </div>
+
+                        <!-- Protocol Type -->
+                        <div class="col-span-full md:col-span-1">
+                            <label class="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Protocol Type</label>
+                            <div class="relative">
+                                <select class="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark">
+                                    <option value="" disabled selected>Select objective...</option>
+                                    <option value="saas">SaaS Infrastructure</option>
+                                    <option value="app">Mobile / Web App</option>
+                                    <option value="mentorship">Architecture Mentorship</option>
+                                    <option value="audit">Security Audit</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">expand_content</span>
+                            </div>
+                        </div>
+
+                        <!-- Resource Allocation -->
+                        <div class="col-span-full md:col-span-1">
+                            <label class="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Resource Allocation</label>
+                            <div class="relative">
+                                <select class="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark">
+                                    <option value="" disabled selected>Estimated capacity...</option>
+                                    <option value="small">&lt; $5k (Micro-service)</option>
+                                    <option value="medium">$5k - $20k (Standard Build)</option>
+                                    <option value="large">&gt; $20k (Enterprise Grade)</option>
+                                    <option value="idk">Awaiting Estimation</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">expand_content</span>
+                            </div>
+                        </div>
+
+                        <!-- Data Payload -->
+                        <div class="col-span-full">
+                            <label class="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3 flex justify-between items-center">
+                                <span>Data Payload</span>
+                                <span class="text-slate-600 font-normal">Details</span>
+                            </label>
+                            <textarea class="w-full bg-background-dark border border-white/10 rounded-lg p-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm resize-none h-40" placeholder="Describe your architecture requirements, feature stack, and primary mission objectives..." required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10">
+                        <div class="flex items-center gap-3 text-slate-400 flex-shrink-0">
+                            <span class="material-symbols-outlined text-accent animate-pulse">security</span>
+                            <span class="text-[10px] font-mono tracking-widest uppercase">End-to-End Encrypted</span>
+                        </div>
+                        
+                        <button type="submit" class="w-full sm:w-auto bg-primary text-background-dark px-10 py-4 text-xs font-black uppercase tracking-[0.2em] btn-glow hover:bg-white transition-all shadow-[4px_4px_0px_0px_rgba(179,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none flex items-center justify-center gap-3">
+                            <span>Execute</span>
+                            <span class="material-symbols-outlined text-lg">rocket_launch</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-20 border-t border-primary/20 bg-surface-dark py-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <h2 class="text-xl font-black uppercase tracking-tighter italic mb-2">AK <span class="text-primary">WITH</span> CODE</h2>
+                <p class="text-[10px] text-slate-500 tracking-[0.3em] uppercase">Est. 2023 // Architectural Supremacy</p>
+            </div>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                <a class="hover:text-primary transition-colors" href="#">Support Terminal</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Robot Assistant -->
+    <div class="fixed bottom-8 right-8 z-50 flex items-end gap-4 animate-float pointer-events-none">
+        
+        <!-- Tooltip Bubble -->
+        <div id="robot-tooltip" class="hidden md:block bg-background-dark border border-primary/30 px-4 py-3 rounded-xl rounded-br-none shadow-[0_0_15px_rgba(255,106,0,0.15)] opacity-0 transition-opacity duration-300 pointer-events-none">
+            <p class="text-xs text-slate-200 font-mono" id="robot-text">Let's build your project together.</p>
+        </div>
+
+        <!-- Robot SVG -->
+        <div class="w-20 h-20 bg-surface-dark border-2 border-primary/40 rounded-2xl shadow-[0_0_20px_rgba(255,106,0,0.2)] relative overflow-hidden pointer-events-auto cursor-pointer flex-shrink-0 group hover:border-primary transition-colors">
+            <!-- Antenna -->
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-1 h-3 bg-primary/50"></div>
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+            
+            <!-- Face Screen -->
+            <div class="absolute inset-2 bg-background-dark rounded-xl border border-white/5 overflow-hidden flex flex-col justify-center items-center gap-2">
+                <!-- Scanline -->
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent h-[200%] animate-[float_4s_linear_infinite] opacity-50"></div>
+                
+                <!-- Eyes Container -->
+                <div id="robot-eyes" class="flex justify-center gap-3 w-full relative z-10 w-fit">
+                    <!-- Left Eye -->
+                    <div class="w-4 h-5 border-2 border-primary rounded-[4px] relative bg-primary/20 group-hover:bg-primary/40 transition-colors">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-2 bg-primary group-hover:h-1 transition-all"></div>
+                    </div>
+                    <!-- Right Eye -->
+                    <div class="w-4 h-5 border-2 border-primary rounded-[4px] relative bg-primary/20 group-hover:bg-primary/40 transition-colors">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-2 bg-primary group-hover:h-1 transition-all"></div>
+                    </div>
+                </div>
+                
+                <!-- Mouth -->
+                <div class="w-8 h-1.5 border-b-2 border-primary/80 rounded-[50%] mt-1 group-hover:w-6 transition-all"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- Scroll Reveal Animation ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; // trigger earlier
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+            
+            // Show first tooltip after slight scroll
+            const tooltip = document.getElementById('robot-tooltip');
+            if (window.scrollY > 100 && !tooltip.classList.contains('has-shown')) {
+                tooltip.classList.remove('opacity-0');
+                tooltip.classList.add('has-shown');
+                setTimeout(() => {
+                    tooltip.classList.add('opacity-0');
+                }, 4000);
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        setTimeout(reveal, 100); // initial check with delay to allow rendering
+
+        // --- Robot Assistant Logic ---
+        const eyes = document.getElementById('robot-eyes');
+        const tooltip = document.getElementById('robot-tooltip');
+        const robotText = document.getElementById('robot-text');
+        
+        // Eye Tracking Data
+        document.addEventListener('mousemove', (e) => {
+            if (!eyes) return;
+            // Get center of eyes container
+            const eyesRect = eyes.getBoundingClientRect();
+            const eyeCenterX = eyesRect.left + eyesRect.width / 2;
+            const eyeCenterY = eyesRect.top + eyesRect.height / 2;
+            
+            // Calculate angle and distance
+            const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+            // Cap distance so pupils don't pop out
+            const distance = Math.min(4, Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) / 60); 
+            
+            const moveX = Math.cos(angle) * distance;
+            const moveY = Math.sin(angle) * distance;
+            
+            eyes.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // Form Interaction Tooltips
+        const inputs = document.querySelectorAll('input, select, textarea');
+        
+        const tooltipMessages = [
+            "Tell us your exact parameters.",
+            "Analyzing incoming data...",
+            "Excellent choice.",
+            "Processing details...",
+            "Almost ready to synchronize."
+        ];
+
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                const randomMsg = tooltipMessages[Math.floor(Math.random() * tooltipMessages.length)];
+                robotText.textContent = randomMsg;
+                tooltip.classList.remove('opacity-0');
+            });
+            input.addEventListener('blur', () => {
+                tooltip.classList.add('opacity-0');
+            });
+        });
+        
+        // Hovering over the robot
+        const robot = document.querySelector('.animate-float .w-20');
+        if(robot) {
+            robot.addEventListener('mouseenter', () => {
+                robotText.textContent = "I am ready to assist.";
+                tooltip.classList.remove('opacity-0');
+            });
+            robot.addEventListener('mouseleave', () => {
+                tooltip.classList.add('opacity-0');
+            });
+        }
+    </script>
+</body>
+</html>

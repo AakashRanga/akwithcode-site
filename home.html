@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AK WITH CODE | Professional LMS &amp; Tech Blog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ff6a00",
+                        "accent": "#b30000",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#1a0f0a",
+                        "surface-dark": "#23170f",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9cAarwzuuD7FgUCbOuHxneTjJAw0-bMPFBFV7PBztj93dZnc-JSc-uP4TP6pVPkx91sxZP9r3XxCLvBfnGG_nzvJ6HpWZKEzPhAHcduetJjcbWTJQJi9pYrkg2wJ75TabTEWa6Q-RjLuGRzRU5RlC8cp4pE7MMnR_yjgA37G103xvBmNM8sH1KoX6ET1F1FGnaDHUxotWhMC7Ne9audBRnY8qts0cYRvNABEstfgH8o1In7zDinB9-F6emEc8icm1ACKa7FuENIw);
+    opacity: 0.03;
+    pointer-events: none
+    }
+.glow-border:hover {
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
+    border-color: #ff6a00
+    }
+.vintage-label {
+    clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white">
+<div class="fixed inset-0 grain-overlay z-50"></div>
+<!-- Header Navigation -->
+<header class="sticky top-0 z-40 w-full border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<a class="flex items-center gap-3 group" href="#">
+<div class="bg-primary p-1 rounded-sm rotate-3 group-hover:rotate-0 transition-transform">
+<span class="material-symbols-outlined text-background-dark font-bold text-2xl">terminal</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK <span class="text-primary">WITH</span> CODE</h1>
+</a>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Home
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Courses
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Topics
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+<a class="text-sm font-bold uppercase tracking-widest hover:text-primary transition-colors relative group" href="#">
+                        Blog
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<input class="bg-surface-dark/50 border-primary/30 focus:border-primary focus:ring-1 focus:ring-primary rounded-none px-4 py-2 text-xs tracking-widest uppercase w-64 placeholder:text-slate-500" placeholder="SEARCH SYSTEM..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2 text-primary drop-shadow-[0_0_8px_rgba(255,106,0,0.8)] cursor-pointer">search</span>
+</div>
+<button class="bg-accent text-white px-6 py-2 text-sm font-bold uppercase tracking-tighter hover:bg-primary transition-all active:scale-95 shadow-[4px_4px_0px_0px_rgba(255,106,0,1)]">
+                    Connect
+                </button>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8 space-y-16">
+<!-- Hero Carousel Section -->
+<section class="relative group h-[500px] overflow-hidden rounded-xl border border-primary/20 bg-surface-dark">
+<div class="absolute inset-0 bg-gradient-to-r from-background-dark via-transparent to-transparent z-10"></div>
+<div class="absolute inset-0 flex items-center p-12 z-20">
+<div class="max-w-2xl space-y-6">
+<div class="inline-block bg-accent text-white px-4 py-1 text-[10px] font-black uppercase tracking-[0.2em] vintage-label">
+                        Upcoming Workshop
+                    </div>
+<h2 class="text-6xl font-bold leading-none tracking-tighter uppercase italic">
+                        The <span class="text-primary underline decoration-accent">Cyberpunk</span><br/>Architecture
+                    </h2>
+<p class="text-lg text-slate-300 font-light max-w-lg leading-relaxed">
+                        Master the art of scalable backend systems using Rust and distributed ledgers. Join the elite network of developers shaping the next era.
+                    </p>
+<div class="flex gap-4 pt-4">
+<button class="bg-primary text-background-dark px-8 py-4 font-black uppercase tracking-widest hover:bg-white transition-all">
+                            Register Now
+                        </button>
+<button class="border border-white/20 text-white px-8 py-4 font-black uppercase tracking-widest hover:bg-white/10 transition-all">
+                            Details
+                        </button>
+</div>
+</div>
+</div>
+<div class="absolute right-0 top-0 w-2/3 h-full grayscale hover:grayscale-0 transition-all duration-700">
+<img class="w-full h-full object-cover" data-alt="Futuristic cyber security server room with glowing orange lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOdqgqJCmQkyPZ3-ULbUPMi0WiTpM6VttW-Bwp1slBtzUMHBTeP0J-xzpFNRdHBz-lU4pCtrkJr7P28AB3AAM-Lp1mSLfyh__baVRtES5h8BaH5uPju0P1XaY6UkxmQjEifw5ptLUKxyuzzyazzDIay3cOks75_KslmMX1yc_g6NPXbHsOZuKNQkZMKKx2MmeUVbtAI9EgL9yzFfhtWoJ169BpC900Gz5t8CKmowUO0zxhbJqDY4xtybwOmi1W4KpM2wAImCoCSU0"/>
+</div>
+<!-- Carousel Dots -->
+<div class="absolute bottom-8 left-12 z-20 flex gap-2">
+<div class="w-12 h-1 bg-primary"></div>
+<div class="w-12 h-1 bg-white/20"></div>
+<div class="w-12 h-1 bg-white/20"></div>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Left: Main Content -->
+<div class="lg:col-span-8 space-y-16">
+<!-- Latest Transmissions Section -->
+<section class="bg-surface-dark border-l-4 border-primary p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6 overflow-hidden relative group">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+<div class="relative z-10 flex items-center gap-5">
+<div class="bg-primary/10 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+</div>
+<div>
+<h4 class="text-xl font-black uppercase tracking-tighter italic">SaaS Projects <span class="text-primary">We Build</span></h4>
+<p class="text-xs text-slate-400 uppercase tracking-[0.1em] mt-1">Custom high-performance architecture for your next big idea.</p>
+</div>
+</div>
+<div class="relative z-10 shrink-0">
+<button class="bg-primary text-background-dark px-6 py-3 text-xs font-black uppercase tracking-widest hover:bg-white transition-all shadow-[4px_4px_0px_0px_rgba(179,0,0,1)] active:translate-x-1 active:translate-y-1 active:shadow-none">
+            Connect with Us
+        </button>
+</div>
+</section><section>
+<div class="flex items-center justify-between mb-8 border-b border-primary/20 pb-4">
+<h3 class="text-3xl font-black uppercase tracking-tighter italic">Latest <span class="text-primary">Transmissions</span></h3>
+<a class="text-xs font-bold uppercase tracking-widest text-primary hover:underline" href="#">View All Terminal Data</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Card 1 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-video overflow-hidden rounded-lg mb-4 border border-primary/10 group-hover:border-primary/50 transition-all">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Code on a dark background with orange highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBr-NQkH4HSLEbz5883MoW8i9RXkslymQL1M06HoQp9Df47tVXfWND3qPwDFwnsiRl8lsGyIe_Q_LHU8OG0q1F8sFfpfrTYo5mfLkFqyKiCt7d7TVisx2K2Ap11KUz0nnRs9tXjGNHPIdpTTOg_fIVog8uNQ5f7_qepjPgkRXKj3SPoni2MRMoS7Cl9nU_aDfjlFP1uSZ_RmyQBFhcpdbxmjIO2bUJQidbEtCO6qOyvnEXk4RZ1Ke5Hgwe2Ami0DuPpx7NgQ48Yo4"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-primary/90 text-background-dark text-[10px] font-bold px-2 py-1 uppercase">Backend</span>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">The Rise of Memory-Safe Systems</h4>
+<p class="text-slate-400 text-sm line-clamp-2 mb-4 leading-relaxed">Exploring why Rust is becoming the standard for high-stakes financial infrastructure in 2024.</p>
+<div class="flex items-center justify-between text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+<span>8 MIN READ</span>
+<span>OCT 24 // 2023</span>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="group cursor-pointer">
+<div class="relative aspect-video overflow-hidden rounded-lg mb-4 border border-primary/10 group-hover:border-primary/50 transition-all">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Network server hardware with fiber optic glowing cables" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzInxeruzwB-Awp7NPoP6S5wdFx_2HuEhvoTz8jjgVFK-lRnawQsEdpRfIuaD5csMyiYXJhrB8YIcctNFAy_leUFshI8QcZe6yv5XL2HFzDrRzbCGZjj0MxvquvOXxJ_cX854Ab-RPdWvadCzV9vUJ6NvTMwnvuqdlZ9uSJDAbu6f2qWsE04XMeGkhuby39nzT9mdWtTimSsQ1hfq0gJQNOddiPnO6DKUGlvEWicPso8_LMcgowW_Yk75N4IG8omkOVexv0GAZyu8"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-accent/90 text-white text-[10px] font-bold px-2 py-1 uppercase">Security</span>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Hardening Your Edge Infrastructure</h4>
+<p class="text-slate-400 text-sm line-clamp-2 mb-4 leading-relaxed">Proactive measures to defend against next-gen DDoS attacks using edge computing models.</p>
+<div class="flex items-center justify-between text-[10px] font-bold tracking-widest text-slate-500 uppercase">
+<span>12 MIN READ</span>
+<span>OCT 21 // 2023</span>
+</div>
+</article>
+</div>
+</section>
+<!-- Top Rated Tracks (Courses) -->
+<section class="bg-primary/5 p-8 rounded-2xl border border-primary/20 border-dashed">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary text-4xl">grade</span>
+<h3 class="text-3xl font-black uppercase tracking-tighter italic">Top Rated <span class="text-primary">Tracks</span></h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Course 1 -->
+<div class="bg-surface-dark border border-white/5 p-6 glow-border transition-all group relative">
+<div class="absolute -top-3 -right-3 bg-accent text-white text-[9px] font-black px-3 py-1 uppercase rotate-12 shadow-lg">Level: Advanced</div>
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 shrink-0 bg-primary/20 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-primary text-3xl">developer_mode_tv</span>
+</div>
+<div>
+<h5 class="text-lg font-bold leading-tight mb-2 uppercase">Kernel Development Mastery</h5>
+<p class="text-xs text-slate-400 mb-4 tracking-wide">Building your own OS from scratch using low-level C and Assembly.</p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-primary border border-background-dark flex items-center justify-center text-[8px] font-bold">AK</div>
+</div>
+<span class="text-[10px] font-bold text-primary uppercase">48 Modules</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Course 2 -->
+<div class="bg-surface-dark border border-white/5 p-6 glow-border transition-all group relative">
+<div class="absolute -top-3 -right-3 bg-primary text-background-dark text-[9px] font-black px-3 py-1 uppercase -rotate-12 shadow-lg">Level: Intermediate</div>
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 shrink-0 bg-accent/20 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-accent text-3xl">shield_lock</span>
+</div>
+<div>
+<h5 class="text-lg font-bold leading-tight mb-2 uppercase">Offensive Security Ops</h5>
+<p class="text-xs text-slate-400 mb-4 tracking-wide">Learn advanced penetration testing techniques used by top security labs.</p>
+<div class="flex items-center gap-4">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-accent border border-background-dark flex items-center justify-center text-[8px] font-bold">X</div>
+</div>
+<span class="text-[10px] font-bold text-accent uppercase">32 Modules</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right: Sidebar -->
+<aside class="lg:col-span-4 space-y-12">
+<!-- Trending Topics -->
+<section>
+<h4 class="text-sm font-black uppercase tracking-[0.3em] text-slate-500 mb-6 flex items-center gap-2">
+<span class="w-8 h-px bg-slate-700"></span>
+                        Trending Topics
+                    </h4>
+<div class="flex flex-wrap gap-2">
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#Kubernetes</a>
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#Web3.0</a>
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#DevOps</a>
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#AIGovernance</a>
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#ZeroTrust</a>
+<a class="bg-surface-dark border border-primary/20 px-3 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-background-dark transition-all" href="#">#Quantum</a>
+</div>
+</section>
+<!-- Recent Terminal Feed -->
+<section>
+<h4 class="text-sm font-black uppercase tracking-[0.3em] text-slate-500 mb-6 flex items-center gap-2">
+<span class="w-8 h-px bg-slate-700"></span>
+                        Recent Data
+                    </h4>
+<div class="space-y-6">
+<div class="group cursor-pointer">
+<p class="text-[10px] font-bold text-primary uppercase mb-1">01 NOV 2023</p>
+<h5 class="font-bold text-sm leading-snug group-hover:underline uppercase tracking-tight">Deploying Microservices with confidence on Bare Metal</h5>
+</div>
+<div class="group cursor-pointer">
+<p class="text-[10px] font-bold text-primary uppercase mb-1">28 OCT 2023</p>
+<h5 class="font-bold text-sm leading-snug group-hover:underline uppercase tracking-tight">Post-Quantum Cryptography: Why it matters today</h5>
+</div>
+<div class="group cursor-pointer">
+<p class="text-[10px] font-bold text-primary uppercase mb-1">25 OCT 2023</p>
+<h5 class="font-bold text-sm leading-snug group-hover:underline uppercase tracking-tight">The Modern Data Stack: A retrospective</h5>
+</div>
+</div>
+</section>
+<!-- Newsletter / Signal Subscription -->
+<section class="bg-accent p-6 text-white relative overflow-hidden">
+<div class="absolute -right-4 -bottom-4 opacity-10">
+<span class="material-symbols-outlined text-[120px] rotate-12">sensors</span>
+</div>
+<h4 class="text-xl font-black uppercase italic mb-2">Join the Signal</h4>
+<p class="text-xs mb-6 text-white/80 leading-relaxed uppercase tracking-widest">Weekly deep-dives into the architecture of the future. No noise, just signals.</p>
+<div class="space-y-3">
+<input class="w-full bg-white/10 border-white/20 placeholder:text-white/40 text-xs py-3 px-4 focus:ring-0 focus:border-white" placeholder="ENCRYPTED_EMAIL" type="email"/>
+<button class="w-full bg-white text-accent font-black py-3 text-xs uppercase tracking-[0.2em] hover:bg-background-dark hover:text-white transition-colors">Subscribe</button>
+</div>
+</section>
+</aside>
+</div>
+</main>
+<footer class="mt-20 border-t border-primary/20 bg-surface-dark py-12">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<h2 class="text-xl font-black uppercase tracking-tighter italic mb-2">AK <span class="text-primary">WITH</span> CODE</h2>
+<p class="text-[10px] text-slate-500 tracking-[0.3em] uppercase">Est. 2023 // Architectural Supremacy</p>
+</div>
+<div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Support Terminal</a>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer text-white">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path></svg>
+</div>
+<div class="w-8 h-8 rounded border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer text-white">
+<svg class="w-4 h-4 fill-current" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
