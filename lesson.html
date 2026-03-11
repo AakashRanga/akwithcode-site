@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -21,256 +27,300 @@
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"]
                     },
-                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
                 },
             },
         }
     </script>
-<style>.grain-texture {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBL0Quu9-YOLz3VvcmyLQNMHSKUFaznEA6_sTDc_h_J6NpETFqQAx_gGFir4zdIeLLmaCLetMYaJyszMDe-89ZnukKBf42YCxTFQ7-DqZdRXsjTyfknv2pSuqJcXpEouEcQWS-VAICTz1n-6NUmPZO8kYDlGumhloItWOOvUMbEijnKaT-_pIxhBg-NvdaGw4zsoQvHI3ivywLQXDBtl-c9boYuQQaRoYbtMITiq85yXWiQfZmQ_pbEfkz6UTXGzDpn0vbyQ_CFtwc);
-    opacity: 0.03;
-    pointer-events: none
-    }
-.glow-border {
-    box-shadow: 0 0 15px rgba(255, 106, 0, 0.2)
-    }
-.retro-sticker {
-    transform: rotate(-2deg);
-    box-shadow: 4px 4px 0 0 #bc1c1c
-    }
-.retro-sticker:hover {
-    transform: rotate(0deg) scale(1.05)
-    }</style>
+    <style>
+        .grain-texture {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBL0Quu9-YOLz3VvcmyLQNMHSKUFaznEA6_sTDc_h_J6NpETFqQAx_gGFir4zdIeLLmaCLetMYaJyszMDe-89ZnukKBf42YCxTFQ7-DqZdRXsjTyfknv2pSuqJcXpEouEcQWS-VAICTz1n-6NUmPZO8kYDlGumhloItWOOvUMbEijnKaT-_pIxhBg-NvdaGw4zsoQvHI3ivywLQXDBtl-c9boYuQQaRoYbtMITiq85yXWiQfZmQ_pbEfkz6UTXGzDpn0vbyQ_CFtwc);
+            opacity: 0.03;
+            pointer-events: none
+        }
+
+        .glow-border {
+            box-shadow: 0 0 15px rgba(255, 106, 0, 0.2)
+        }
+
+        .retro-sticker {
+            transform: rotate(-2deg);
+            box-shadow: 4px 4px 0 0 #bc1c1c
+        }
+
+        .retro-sticker:hover {
+            transform: rotate(0deg) scale(1.05)
+        }
+    </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
-<div class="fixed inset-0 grain-texture z-50"></div>
-<!-- Navigation Header -->
-<header class="sticky top-0 z-40 w-full border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-12 py-4">
-<div class="max-w-[1600px] mx-auto flex items-center justify-between">
-<div class="flex items-center gap-4">
-<div class="size-10 bg-primary flex items-center justify-center rounded-lg shadow-lg rotate-3">
-<span class="material-symbols-outlined text-white">terminal</span>
-</div>
-<h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK WITH CODE</h1>
-</div>
-<div class="hidden md:flex flex-1 max-w-md mx-12">
-<div class="relative w-full group">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
-<input class="w-full bg-slate-200/50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary rounded-lg py-2 pl-10 pr-4 outline-none transition-all" placeholder="Search documentation..." type="text"/>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button class="px-6 py-2 bg-primary text-white font-bold rounded-lg shadow-[4px_4px_0px_0px_rgba(188,28,28,1)] hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-widest text-sm">
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen relative overflow-x-hidden">
+    <div class="fixed inset-0 grain-texture z-50"></div>
+    <!-- Navigation Header -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- <header
+        class="sticky top-0 z-40 w-full border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 lg:px-12 py-4">
+        <div class="max-w-[1600px] mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <div class="size-10 bg-primary flex items-center justify-center rounded-lg shadow-lg rotate-3">
+                    <span class="material-symbols-outlined text-white">terminal</span>
+                </div>
+                <h1 class="text-2xl font-bold tracking-tighter uppercase italic">AK WITH CODE</h1>
+            </div>
+            <div class="hidden md:flex flex-1 max-w-md mx-12">
+                <div class="relative w-full group">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary">search</span>
+                    <input
+                        class="w-full bg-slate-200/50 dark:bg-slate-800/50 border-2 border-transparent focus:border-primary rounded-lg py-2 pl-10 pr-4 outline-none transition-all"
+                        placeholder="Search documentation..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="px-6 py-2 bg-primary text-white font-bold rounded-lg shadow-[4px_4px_0px_0px_rgba(188,28,28,1)] hover:translate-y-1 hover:shadow-none transition-all uppercase tracking-widest text-sm">
                     Join Community
                 </button>
-</div>
-</div>
-</header>
-<main class="max-w-[1600px] mx-auto p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
-<!-- Left Column: Video & Content -->
-<div class="flex flex-col gap-6">
-<!-- Video Player -->
-<div class="relative group rounded-xl overflow-hidden border-2 border-primary/30 glow-border bg-black aspect-video">
-<div class="absolute inset-0 bg-cover bg-center opacity-60" data-alt="Technical code editor on a monitor with warm lighting" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ0tGmYlG4ygMrV_Uk5hLhreYF5P9htQOQ1Yd8YTJRo3fF1-phQOv0pVZa5fehRVnSzrwJyq70zhRYjUc34S1-dawJE2EYtpoK7sdMQgCzmLX0TB8mrQFdM8pAbO6EX73iJeCrnH_bAE-wAxMItHiiPsoqPCnNokF10u0ne6wsTWrkPI9m82dXbf0xSKT14q_7JsMMdM61DLrY2iSBnFQeccOS7LX8g7MvavnqZk6u_WeoFoGsPTq7zPDqo-VbQSDv0QZsxk6I9oc')"></div>
-<div class="absolute inset-0 flex items-center justify-center">
-<button class="size-20 bg-primary/90 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl">
-<span class="material-symbols-outlined text-5xl">play_arrow</span>
-</button>
-</div>
-<!-- Video Controls Overlay -->
-<div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-<div class="h-1.5 w-full bg-slate-700 rounded-full mb-3 relative cursor-pointer">
-<div class="absolute left-0 top-0 h-full w-1/3 bg-primary rounded-full"></div>
-<div class="absolute left-1/3 top-1/2 -translate-y-1/2 size-4 bg-white rounded-full border-2 border-primary shadow-glow"></div>
-</div>
-<div class="flex justify-between items-center text-xs font-mono text-slate-300">
-<span>12:45 / 45:00</span>
-<div class="flex gap-4">
-<span class="material-symbols-outlined text-sm cursor-pointer">settings</span>
-<span class="material-symbols-outlined text-sm cursor-pointer">fullscreen</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Lesson Header -->
-<div class="relative bg-white dark:bg-slate-900 p-8 rounded-xl border-l-8 border-primary shadow-xl">
-<div class="absolute -top-4 -right-4 bg-accent-red text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter rotate-12">
+            </div>
+        </div>
+    </header> -->
+    <main class="max-w-[1600px] mx-auto p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Left Column: Video & Content -->
+        <div class="flex flex-col gap-6">
+            <!-- Video Player -->
+            <div
+                class="relative group rounded-xl overflow-hidden border-2 border-primary/30 glow-border bg-black aspect-video">
+                <div class="absolute inset-0 bg-cover bg-center opacity-60"
+                    data-alt="Technical code editor on a monitor with warm lighting"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ0tGmYlG4ygMrV_Uk5hLhreYF5P9htQOQ1Yd8YTJRo3fF1-phQOv0pVZa5fehRVnSzrwJyq70zhRYjUc34S1-dawJE2EYtpoK7sdMQgCzmLX0TB8mrQFdM8pAbO6EX73iJeCrnH_bAE-wAxMItHiiPsoqPCnNokF10u0ne6wsTWrkPI9m82dXbf0xSKT14q_7JsMMdM61DLrY2iSBnFQeccOS7LX8g7MvavnqZk6u_WeoFoGsPTq7zPDqo-VbQSDv0QZsxk6I9oc')">
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <button
+                        class="size-20 bg-primary/90 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl">
+                        <span class="material-symbols-outlined text-5xl">play_arrow</span>
+                    </button>
+                </div>
+                <!-- Video Controls Overlay -->
+                <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    <div class="h-1.5 w-full bg-slate-700 rounded-full mb-3 relative cursor-pointer">
+                        <div class="absolute left-0 top-0 h-full w-1/3 bg-primary rounded-full"></div>
+                        <div
+                            class="absolute left-1/3 top-1/2 -translate-y-1/2 size-4 bg-white rounded-full border-2 border-primary shadow-glow">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center text-xs font-mono text-slate-300">
+                        <span>12:45 / 45:00</span>
+                        <div class="flex gap-4">
+                            <span class="material-symbols-outlined text-sm cursor-pointer">settings</span>
+                            <span class="material-symbols-outlined text-sm cursor-pointer">fullscreen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Lesson Header -->
+            <div class="relative bg-white dark:bg-slate-900 p-8 rounded-xl border-l-8 border-primary shadow-xl">
+                <div
+                    class="absolute -top-4 -right-4 bg-accent-red text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter rotate-12">
                     Live Session
                 </div>
-<h2 class="text-4xl font-bold mb-4 tracking-tight leading-none uppercase italic">Mastering Memory Management</h2>
-<p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                    Deep dive into manual memory allocation, pointers, and ownership models in low-level programming. We explore why heap vs stack matters in high-performance C++ and Rust applications.
+                <h2 class="text-4xl font-bold mb-4 tracking-tight leading-none uppercase italic">Mastering Memory
+                    Management</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
+                    Deep dive into manual memory allocation, pointers, and ownership models in low-level programming. We
+                    explore why heap vs stack matters in high-performance C++ and Rust applications.
                 </p>
-<!-- Terminal Style Resources -->
-<div class="mt-8 bg-black rounded-lg p-6 font-mono text-sm border-t-4 border-accent-red">
-<div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
-<span class="text-primary">$</span>
-<span class="text-slate-100">ls ./lesson-resources</span>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-<a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-primary">description</span>
+                <!-- Terminal Style Resources -->
+                <div class="mt-8 bg-black rounded-lg p-6 font-mono text-sm border-t-4 border-accent-red">
+                    <div class="flex gap-2 mb-4 border-b border-white/10 pb-2">
+                        <span class="text-primary">$</span>
+                        <span class="text-slate-100">ls ./lesson-resources</span>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-primary">description</span>
                             memory_map_v1.pdf
                         </a>
-<a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-primary">folder_zip</span>
+                        <a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-primary">folder_zip</span>
                             starter_code.zip
                         </a>
-<a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-primary">link</span>
+                        <a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-primary">link</span>
                             official_docs.md
                         </a>
-<a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
-<span class="material-symbols-outlined text-primary">quiz</span>
+                        <a class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors" href="#">
+                            <span class="material-symbols-outlined text-primary">quiz</span>
                             knowledge_check.exe
                         </a>
-</div>
-</div>
-</div>
-<!-- Lesson Navigation -->
-<div class="flex justify-between items-center mt-4">
-<button class="retro-sticker bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white px-6 py-3 font-bold uppercase tracking-widest text-sm flex items-center gap-2 border-2 border-slate-900 dark:border-white">
-<span class="material-symbols-outlined">arrow_back</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Lesson Navigation -->
+            <div class="flex justify-between items-center mt-4">
+                <button
+                    class="retro-sticker bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-white px-6 py-3 font-bold uppercase tracking-widest text-sm flex items-center gap-2 border-2 border-slate-900 dark:border-white">
+                    <span class="material-symbols-outlined">arrow_back</span>
                     Prev Lesson
                 </button>
-<button class="retro-sticker bg-primary text-white px-8 py-3 font-bold uppercase tracking-widest text-sm flex items-center gap-2 border-2 border-slate-900">
+                <button
+                    class="retro-sticker bg-primary text-white px-8 py-3 font-bold uppercase tracking-widest text-sm flex items-center gap-2 border-2 border-slate-900">
                     Next Lesson
                     <span class="material-symbols-outlined">arrow_forward</span>
-</button>
-</div>
-</div>
-<!-- Right Column: Code Editor & Progress -->
-<div class="flex flex-col gap-6 h-full">
-<!-- Code Editor Wrapper -->
-<div class="flex-1 min-h-[500px] flex flex-col bg-[#1e1e1e] rounded-xl overflow-hidden border-2 border-slate-700/50 shadow-2xl relative">
-<!-- Editor Header -->
-<div class="flex items-center justify-between px-4 py-3 bg-[#252526] border-b border-white/5">
-<div class="flex items-center gap-4">
-<div class="flex gap-1.5">
-<div class="size-3 rounded-full bg-accent-red"></div>
-<div class="size-3 rounded-full bg-yellow-500"></div>
-<div class="size-3 rounded-full bg-green-500"></div>
-</div>
-<span class="text-xs font-mono text-slate-400">main.cpp — ak-with-code — SSH</span>
-</div>
-<div class="flex gap-2">
-<span class="material-symbols-outlined text-slate-500 text-sm hover:text-white cursor-pointer">play_arrow</span>
-<span class="material-symbols-outlined text-slate-500 text-sm hover:text-white cursor-pointer">save</span>
-</div>
-</div>
-<!-- Syntax Highlighting Content -->
-<div class="flex-1 p-6 font-mono text-sm overflow-auto">
-<table class="w-full border-collapse">
-<tbody class="text-slate-300">
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">1</td>
-<td><span class="text-[#569cd6]">#include</span> <span class="text-[#ce9178]">&lt;iostream&gt;</span></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">2</td>
-<td><span class="text-[#569cd6]">#include</span> <span class="text-[#ce9178]">&lt;memory&gt;</span></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">3</td>
-<td></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">4</td>
-<td><span class="text-[#569cd6]">int</span> <span class="text-[#dcdcaa]">main</span>() {</td>
-</tr>
-<tr class="group bg-primary/10">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">5</td>
-<td>    <span class="text-[#6a9955]">// Manually allocating memory (DANGEROUS)</span></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">6</td>
-<td>    <span class="text-[#569cd6]">int</span>* ptr = <span class="text-[#569cd6]">new</span> <span class="text-[#569cd6]">int</span>(<span class="text-[#b5cea8]">42</span>);</td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">7</td>
-<td>    <span class="text-[#dcdcaa]">std::cout</span> &lt;&lt; <span class="text-[#ce9178]">"Value: "</span> &lt;&lt; *ptr &lt;&lt; <span class="text-[#dcdcaa]">std::endl</span>;</td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">8</td>
-<td></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">9</td>
-<td>    <span class="text-[#6a9955]">// Always free what you allocate!</span></td>
-</tr>
-<tr class="group border-l-2 border-primary">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">10</td>
-<td>    <span class="text-[#569cd6]">delete</span> ptr;</td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">11</td>
-<td></td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">12</td>
-<td>    <span class="text-[#569cd6]">return</span> <span class="text-[#b5cea8]">0</span>;</td>
-</tr>
-<tr class="group">
-<td class="w-10 text-slate-600 text-right pr-4 select-none italic">13</td>
-<td>}</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Integrated Terminal Area -->
-<div class="bg-black/80 h-32 border-t border-white/10 p-4 font-mono text-xs overflow-hidden">
-<div class="flex items-center gap-2 mb-2 text-slate-500">
-<span class="material-symbols-outlined text-xs">terminal</span>
-<span>TERMINAL</span>
-</div>
-<div class="text-green-500">ak@linux:~/projects/memory-mastery$ g++ main.cpp -o main</div>
-<div class="text-green-500">ak@linux:~/projects/memory-mastery$ ./main</div>
-<div class="text-slate-100">Value: 42</div>
-<div class="text-green-500">ak@linux:~/projects/memory-mastery$ <span class="animate-pulse">_</span></div>
-</div>
-</div>
-<!-- Course Progress Section -->
-<div class="bg-slate-900 p-6 rounded-xl border border-primary/20 shadow-2xl">
-<div class="flex items-center justify-between mb-4">
-<h3 class="text-sm font-bold uppercase tracking-[0.2em] text-primary">System Progress</h3>
-<span class="text-xs font-mono text-slate-400">75% Complete</span>
-</div>
-<!-- ASCII Style Progress Bar -->
-<div class="font-mono text-primary text-sm mb-4 flex overflow-hidden">
-<span class="text-accent-red">[</span>
-<span class="flex-1">#######################################-------</span>
-<span class="text-accent-red">]</span>
-</div>
-<div class="space-y-3">
-<div class="flex items-center gap-3 text-slate-400 text-xs font-mono">
-<span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
-<span>01_introduction_to_low_level.sh</span>
-</div>
-<div class="flex items-center gap-3 text-white text-xs font-mono font-bold">
-<span class="material-symbols-outlined text-primary text-sm">radio_button_checked</span>
-<span class="bg-primary/20 px-1">02_memory_management_basics.cpp</span>
-</div>
-<div class="flex items-center gap-3 text-slate-600 text-xs font-mono">
-<span class="material-symbols-outlined text-slate-700 text-sm">radio_button_unchecked</span>
-<span>03_pointers_and_references.rust</span>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Retro Bottom Banner -->
-<footer class="mt-12 py-8 bg-black text-white overflow-hidden relative border-t-2 border-accent-red">
-<div class="absolute inset-0 bg-primary/5 grain-texture"></div>
-<div class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
-<div class="text-center md:text-left">
-<p class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-1 italic">Status: Fully Operational</p>
-<p class="text-sm">© 1994-2024 AK WITH CODE BLOG - ALL RIGHTS RESERVED.</p>
-</div>
-<div class="flex gap-8">
-<a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">Discord</a>
-<a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">GitHub</a>
-<a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">Twitter</a>
-</div>
-</div>
-</footer>
-</body></html>
+                </button>
+            </div>
+        </div>
+        <!-- Right Column: Code Editor & Progress -->
+        <div class="flex flex-col gap-6 h-full">
+            <!-- Code Editor Wrapper -->
+            <div
+                class="flex-1 min-h-[500px] flex flex-col bg-[#1e1e1e] rounded-xl overflow-hidden border-2 border-slate-700/50 shadow-2xl relative">
+                <!-- Editor Header -->
+                <div class="flex items-center justify-between px-4 py-3 bg-[#252526] border-b border-white/5">
+                    <div class="flex items-center gap-4">
+                        <div class="flex gap-1.5">
+                            <div class="size-3 rounded-full bg-accent-red"></div>
+                            <div class="size-3 rounded-full bg-yellow-500"></div>
+                            <div class="size-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400">main.cpp — ak-with-code — SSH</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <span
+                            class="material-symbols-outlined text-slate-500 text-sm hover:text-white cursor-pointer">play_arrow</span>
+                        <span
+                            class="material-symbols-outlined text-slate-500 text-sm hover:text-white cursor-pointer">save</span>
+                    </div>
+                </div>
+                <!-- Syntax Highlighting Content -->
+                <div class="flex-1 p-6 font-mono text-sm overflow-auto">
+                    <table class="w-full border-collapse">
+                        <tbody class="text-slate-300">
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">1</td>
+                                <td><span class="text-[#569cd6]">#include</span> <span
+                                        class="text-[#ce9178]">&lt;iostream&gt;</span></td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">2</td>
+                                <td><span class="text-[#569cd6]">#include</span> <span
+                                        class="text-[#ce9178]">&lt;memory&gt;</span></td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">3</td>
+                                <td></td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">4</td>
+                                <td><span class="text-[#569cd6]">int</span> <span class="text-[#dcdcaa]">main</span>() {
+                                </td>
+                            </tr>
+                            <tr class="group bg-primary/10">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">5</td>
+                                <td>    <span class="text-[#6a9955]">// Manually allocating memory (DANGEROUS)</span>
+                                </td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">6</td>
+                                <td>    <span class="text-[#569cd6]">int</span>* ptr = <span
+                                        class="text-[#569cd6]">new</span> <span class="text-[#569cd6]">int</span>(<span
+                                        class="text-[#b5cea8]">42</span>);</td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">7</td>
+                                <td>    <span class="text-[#dcdcaa]">std::cout</span> &lt;&lt; <span
+                                        class="text-[#ce9178]">"Value: "</span> &lt;&lt; *ptr &lt;&lt; <span
+                                        class="text-[#dcdcaa]">std::endl</span>;</td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">8</td>
+                                <td></td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">9</td>
+                                <td>    <span class="text-[#6a9955]">// Always free what you allocate!</span></td>
+                            </tr>
+                            <tr class="group border-l-2 border-primary">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">10</td>
+                                <td>    <span class="text-[#569cd6]">delete</span> ptr;</td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">11</td>
+                                <td></td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">12</td>
+                                <td>    <span class="text-[#569cd6]">return</span> <span
+                                        class="text-[#b5cea8]">0</span>;</td>
+                            </tr>
+                            <tr class="group">
+                                <td class="w-10 text-slate-600 text-right pr-4 select-none italic">13</td>
+                                <td>}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Integrated Terminal Area -->
+                <div class="bg-black/80 h-32 border-t border-white/10 p-4 font-mono text-xs overflow-hidden">
+                    <div class="flex items-center gap-2 mb-2 text-slate-500">
+                        <span class="material-symbols-outlined text-xs">terminal</span>
+                        <span>TERMINAL</span>
+                    </div>
+                    <div class="text-green-500">ak@linux:~/projects/memory-mastery$ g++ main.cpp -o main</div>
+                    <div class="text-green-500">ak@linux:~/projects/memory-mastery$ ./main</div>
+                    <div class="text-slate-100">Value: 42</div>
+                    <div class="text-green-500">ak@linux:~/projects/memory-mastery$ <span class="animate-pulse">_</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Course Progress Section -->
+            <div class="bg-slate-900 p-6 rounded-xl border border-primary/20 shadow-2xl">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-bold uppercase tracking-[0.2em] text-primary">System Progress</h3>
+                    <span class="text-xs font-mono text-slate-400">75% Complete</span>
+                </div>
+                <!-- ASCII Style Progress Bar -->
+                <div class="font-mono text-primary text-sm mb-4 flex overflow-hidden">
+                    <span class="text-accent-red">[</span>
+                    <span class="flex-1">#######################################-------</span>
+                    <span class="text-accent-red">]</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3 text-slate-400 text-xs font-mono">
+                        <span class="material-symbols-outlined text-green-500 text-sm">check_circle</span>
+                        <span>01_introduction_to_low_level.sh</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-white text-xs font-mono font-bold">
+                        <span class="material-symbols-outlined text-primary text-sm">radio_button_checked</span>
+                        <span class="bg-primary/20 px-1">02_memory_management_basics.cpp</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-600 text-xs font-mono">
+                        <span class="material-symbols-outlined text-slate-700 text-sm">radio_button_unchecked</span>
+                        <span>03_pointers_and_references.rust</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Retro Bottom Banner -->
+    <footer class="mt-12 py-8 bg-black text-white overflow-hidden relative border-t-2 border-accent-red">
+        <div class="absolute inset-0 bg-primary/5 grain-texture"></div>
+        <div
+            class="max-w-[1600px] mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8 relative z-10">
+            <div class="text-center md:text-left">
+                <p class="text-xs font-mono text-slate-500 uppercase tracking-widest mb-1 italic">Status: Fully
+                    Operational</p>
+                <p class="text-sm">© 1994-2024 AK WITH CODE BLOG - ALL RIGHTS RESERVED.</p>
+            </div>
+            <div class="flex gap-8">
+                <a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">Discord</a>
+                <a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">GitHub</a>
+                <a class="text-sm uppercase font-bold hover:text-primary transition-colors italic" href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="navbar.js"></script>
+
+</html>
