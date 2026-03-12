@@ -31,7 +31,7 @@ const Home = () => (
 
 function App() {
   return (
-    <Router>
+    <Router basename="/akwithcode-site">
       <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white relative">
         <div className="fixed inset-0 grain-overlay z-[60] pointer-events-none"></div>
 
