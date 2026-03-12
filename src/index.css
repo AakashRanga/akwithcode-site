@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff6a00;
+  --color-accent: #b30000;
+  --color-background-light: #f8f7f5;
+  --color-background-dark: #1a0f0a;
+  --color-surface-dark: #23170f;
+  --color-accent-red: #b91c1c;
+
+  --font-display: "Space Grotesk", sans-serif;
+
+  --radius-default: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+/* @layer base {
+  * {
+    border-color: var(--color-primary, #ff6a00);
+  }
+} */
+
+@layer utilities {
+  .grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9cAarwzuuD7FgUCbOuHxneTjJAw0-bMPFBFV7PBztj93dZnc-JSc-uP4TP6pVPkx91sxZP9r3XxCLvBfnGG_nzvJ6HpWZKEzPhAHcduetJjcbWTJQJi9pYrkg2wJ75TabTEWa6Q-RjLuGRzRU5RlC8cp4pE7MMnR_yjgA37G103xvBmNM8sH1KoX6ET1F1FGnaDHUxotWhMC7Ne9audBRnY8qts0cYRvNABEstfgH8o1In7zDinB9-F6emEc8icm1ACKa7FuENIw);
+    opacity: 0.03;
+    pointer-events: none;
+  }
+
+  .glow-border:hover {
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.4);
+    border-color: #ff6a00;
+  }
+
+  .vintage-label {
+    clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
+  }
+
+  .grainy-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDJRAxYuJeWgXL_sYjZGvS9-wwkuz4yczwl1LuS3MRSfKuHKjRgnKEZOJknajG_LwgWLLKgyXhIR-U1L7_rnyszWvhcgLyj_sEiWgdYixenWXYcYd1pjpdu7p7EFvI8HBCpfzndd_GiHxdlWxW7a7XiDYYmOuIUFhHOtE_dQRgfd5f_FFbFN17BPmtW9o9t6sjqj0Pk-l3qUm9o0dCC8v0e6MiHrwSfdPFWHl4SgIdtfry4bXi5wtQw8Z5eK9bZgeY8399X27i1XX4);
+    background-repeat: repeat;
+  }
+
+  .glow-edge {
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
+    border: 1px solid rgba(255, 106, 0, 0.3);
+    @apply transition-all duration-300;
+  }
+
+  .glow-edge:hover {
+    box-shadow: 0 0 25px rgba(255, 106, 0, 0.4);
+    border-color: #ff6a00;
+  }
+
+  .vintage-tag {
+    clip-path: polygon(90% 0, 100% 50%, 90% 100%, 0% 100%, 0% 0%);
+  }
+
+  .scanline {
+    background: linear-gradient(to bottom, rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 2px, 3px 100%;
+    pointer-events: none;
+  }
+
+  .vintage-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+  }
+
+  .sticker-angle {
+    transform: rotate(-3deg);
+  }
+
+  .glass-nav {
+    background: rgba(18, 11, 7, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 106, 0, 0.2);
+  }
+
+  .vintage-paper {
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAWRxCASOpeVVqqUtyKEsTiHJvcNzCysW3F4tCZuj4PJSAqN74lCUj4FwazVTM0_K_2xyJ79ncTgQxeBKTCWrHfNWXYwNBlmiEUZRc_GjS1sr3jaSYLrBSw1X7ko4i7ZTWSGa6VucwGuddSOV0AkPvuThRoZPXeiptS_EjGD3EP3-xxKHZmiCvyocPKD019cHAvvwl5SZhw1cHayTdo45dFVnZ27pWkek8SeycNYq0-16COo5RHSfNweC8aypR_VWRzJKM03vS7Hcw");
+    /* background-color: var(--color-background-dark);
+    background-image: linear-gradient(rgba(255, 106, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 106, 0, 0.05) 1px, transparent 1px); */
+    /* background-size: 20px 20px; */
+  }
+
+  .sticker-label {
+    transform: rotate(-2deg);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .title-underline {
+    background: linear-gradient(90deg, #ff6a00 0%, transparent 100%);
+    height: 4px;
+    width: 100%;
+    display: block;
+    margin-top: 4px;
+  }
+
+  /* Connect Page Animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  @keyframes scanline-anim {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(200%); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .glow-input {
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  .glow-input:focus {
+    box-shadow: inset 0 0 10px rgba(255, 106, 0, 0.1), 0 0 15px rgba(255, 106, 0, 0.4);
+    border-color: #ff6a00;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .btn-glow {
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 25px rgba(179, 0, 0, 0.6);
+    border-color: #ff6a00;
+  }
+
+  .sticker-tag {
+    transform: rotate(-2deg);
+    transition: transform 0.2s;
+    @apply shadow-lg border-2 border-black;
+  }
+
+  .sticker-tag:nth-child(even) {
+    transform: rotate(3deg);
+  }
+
+  .sticker-tag:hover {
+    transform: scale(1.1) rotate(0deg);
+  }
+
+  .retro-terminal {
+    background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+    border-left: 4px solid #ff6a00;
+  }
+
+  .crt-overlay {
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+    background-size: 100% 3px, 3px 100%;
+    pointer-events: none;
+  }
+
+  .scanline {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 106, 0, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: scanline-move 8s linear infinite;
+  }
+
+  @keyframes scanline-move {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
+
+  .terminal-border {
+    border: 1px solid rgba(255, 106, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 106, 0, 0.1);
+  }
+
+  .glitch-hover:hover {
+    text-shadow: 2px 0 #cc0000, -2px 0 #00ff41;
+  }
+
+  .retro-sticker {
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0 0 #bc1c1c;
+    transition: all 0.2s ease;
+  }
+
+  .retro-sticker:hover {
+    transform: rotate(0deg) scale(1.05);
+    box-shadow: 2px 2px 0 0 #bc1c1c;
+  }
+
+  .grain-texture {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBL0Quu9-YOLz3VvcmyLQNMHSKUFaznEA6_sTDc_h_J6NpETFqQAx_gGFir4zdIeLLmaCLetMYaJyszMDe-89ZnukKBf42YCxTFQ7-DqZdRXsjTyfknv2pSuqJcXpEouEcQWS-VAICTz1n-6NUmPZO8kYDlGumhloItWOOvUMbEijnKaT-_pIxhBg-NvdaGw4zsoQvHI3ivywLQXDBtl-c9boYuQQaRoYbtMITiq85yXWiQfZmQ_pbEfkz6UTXGzDpn0vbyQ_CFtwc);
+    opacity: 0.1;
+    pointer-events: none;
+  }
+}
