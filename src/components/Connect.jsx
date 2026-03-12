@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import robotImg from '../assets/robot_img.png';
 
 const Connect = () => {
     const [robotMsg, setRobotMsg] = useState("Let's build your project together.");
@@ -348,7 +349,7 @@ const Connect = () => {
                     onMouseEnter={() => { if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); }}
                     onMouseLeave={() => setTooltipVisible(false)}
                 >
-                    <img id="robot-image" src="/assets/robot_img.png" alt="Vintage 3D Robot Assistant" className="w-full h-full object-contain filter hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,106,0,0.3)]" />
+                    <img id="robot-image" src={robotImg} alt="Vintage 3D Robot Assistant" className="w-full h-full object-contain filter hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,106,0,0.3)]" />
                 </div>
             </div>
         </main>
