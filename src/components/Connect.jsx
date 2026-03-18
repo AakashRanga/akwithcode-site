@@ -5,8 +5,11 @@ const Connect = () => {
     const [robotMsg, setRobotMsg] = useState("Let's build your project together.");
     const [metadata, setMetadata] = useState(null);
     const [tooltipVisible, setTooltipVisible] = useState(false);
+    const [activeInput, setActiveInput] = useState(null);
     const tooltipRef = useRef(null);
     const observerRef = useRef(null);
+    const idleTimeoutRef = useRef(null);
+    const isHoveringCardRef = useRef(false);
 
     useEffect(() => {
         // Scroll Reveal Animation
@@ -54,39 +57,99 @@ const Connect = () => {
             if (observerRef.current) {
                 observerRef.current.disconnect();
             }
+            if (idleTimeoutRef.current) {
+                clearTimeout(idleTimeoutRef.current);
+            }
         };
     }, []);
 
-    const tooltipMessages = [
-        "Tell us your exact parameters.",
-        "Analyzing incoming data...",
-        "Excellent choice.",
-        "Processing details...",
-        "Almost ready to synchronize."
-    ];
+    // Field-specific messages for Input Parameters
+    const inputFieldInfo = {
+        targetIdentity: {
+            title: "Target Identity",
+            message: "Enter your full name or professional handle. This identifies you in our secure system.",
+            icon: "person"
+        },
+        commLink: {
+            title: "Comm Link",
+            message: "Provide your encrypted email channel. We use end-to-end encryption for all communications.",
+            icon: "mail"
+        },
+        protocolType: {
+            title: "Protocol Type",
+            message: "Select your engagement objective: SaaS infrastructure, application development, mentorship, or security audit.",
+            icon: "hub"
+        },
+        resourceAllocation: {
+            title: "Resource Allocation",
+            message: "Define your budget range. We scale our architecture to match your investment capacity.",
+            icon: "account_balance"
+        },
+        dataPayload: {
+            title: "Data Payload",
+            message: "Describe your requirements in detail. The more specifics you provide, the faster we can synchronize.",
+            icon: "data_array"
+        }
+    };
 
-    const handleInputFocus = () => {
+    const handleInputFocus = (fieldName) => {
         setMetadata(null);
-        const randomMsg = tooltipMessages[Math.floor(Math.random() * tooltipMessages.length)];
-        setRobotMsg(randomMsg);
+        isHoveringCardRef.current = false;
+
+        // Clear any pending idle timeout
+        if (idleTimeoutRef.current) {
+            clearTimeout(idleTimeoutRef.current);
+            idleTimeoutRef.current = null;
+        }
+
+        const fieldData = inputFieldInfo[fieldName];
+        if (fieldData) {
+            setActiveInput(fieldName);
+            setRobotMsg(fieldData.message);
+        } else {
+            setRobotMsg("Provide your details for synchronization.");
+        }
         setTooltipVisible(true);
     };
 
     const handleInputBlur = () => {
+        setActiveInput(null);
         setTooltipVisible(false);
+        // Clear any pending idle timeout
+        if (idleTimeoutRef.current) {
+            clearTimeout(idleTimeoutRef.current);
+            idleTimeoutRef.current = null;
+        }
+        // Set idle message after a short delay
+        idleTimeoutRef.current = setTimeout(() => {
+            setRobotMsg("System Idle.");
+        }, 500);
     };
 
     const handleCardEnter = (cardData) => {
+        // Clear any pending idle timeout
+        if (idleTimeoutRef.current) {
+            clearTimeout(idleTimeoutRef.current);
+            idleTimeoutRef.current = null;
+        }
+
+        isHoveringCardRef.current = true;
+        setActiveInput(null);
         setMetadata(cardData);
         setTooltipVisible(true);
     };
 
     const handleCardLeave = () => {
-        setTooltipVisible(false);
-        setTimeout(() => {
-            setMetadata(null);
-            setRobotMsg("System Idle.");
-        }, 300);
+        isHoveringCardRef.current = false;
+
+        // Set a timeout for idle message, but only if not moving to another card
+        idleTimeoutRef.current = setTimeout(() => {
+            if (!isHoveringCardRef.current && !activeInput) {
+                setMetadata(null);
+                setRobotMsg("System Idle.");
+                setTooltipVisible(false);
+            }
+        }, 500);
     };
 
     const projects = [
@@ -115,7 +178,7 @@ const Connect = () => {
     ];
 
     return (
-        <main className="max-w-7xl mx-auto px-6 py-16 relative z-10 overflow-hidden">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-24 sm:pb-16 relative z-10 overflow-hidden">
             {/* Background glow effects */}
             <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50 animate-pulse-slow"></div>
@@ -123,11 +186,11 @@ const Connect = () => {
             </div>
 
             {/* Hero Section */}
-            <section className="max-w-4xl mx-auto text-center mb-24 reveal">
+            <section className="max-w-4xl mx-auto text-center mb-16 sm:mb-24 reveal">
                 <div className="inline-block bg-primary/20 text-primary border border-primary/40 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,106,0,0.2)]">
                     Secure Handshake Initialization
                 </div>
-                <h1 className="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-8 text-slate-100">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-8 text-slate-100">
                     Build The <br /> <span className="text-primary underline decoration-accent-red decoration-4 underline-offset-8">Future</span>
                 </h1>
                 <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
@@ -136,7 +199,7 @@ const Connect = () => {
             </section>
 
             {/* Deployed Protocols */}
-            <section className="mb-32 reveal delay-100">
+            <section className="mb-16 sm:mb-32 reveal delay-100">
                 <div className="flex items-end justify-between border-b border-primary/20 pb-4 mb-8">
                     <div>
                         <h2 className="text-3xl font-black uppercase tracking-tighter italic flex items-center gap-3 text-slate-100">
@@ -149,11 +212,13 @@ const Connect = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {projects.map((project, i) => (
-                        <article 
+                        <article
                             key={i}
                             className="bg-surface-dark border border-white/5 rounded-xl overflow-hidden group cursor-pointer hover:border-primary/50 transition-colors relative"
                             onMouseEnter={() => handleCardEnter(project)}
                             onMouseLeave={handleCardLeave}
+                            onTouchStart={(e) => { e.preventDefault(); handleCardEnter(project); }}
+                            onTouchEnd={(e) => { e.preventDefault(); handleCardLeave(); }}
                         >
                             <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
                             <div className="aspect-[16/9] bg-background-dark relative overflow-hidden border-b border-white/5 z-10">
@@ -195,7 +260,7 @@ const Connect = () => {
                 </div>
             </section>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10">
                 {/* Left Sidebar */}
                 <div className="hidden lg:col-span-4 lg:flex flex-col space-y-8 reveal delay-100">
                     <div className="bg-surface-dark border border-white/5 p-6 rounded-xl shadow-2xl relative overflow-hidden group">
@@ -242,7 +307,7 @@ const Connect = () => {
 
                 {/* Right: Contact Form */}
                 <div className="lg:col-span-8 reveal delay-200">
-                    <form className="bg-surface-dark border border-white/10 p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden group">
+                    <form className="bg-surface-dark border border-white/10 p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden group">
                         <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-all duration-1000"></div>
 
                         <div className="mb-10 pb-6 border-b border-white/5 relative z-10 flex items-center gap-4">
@@ -255,24 +320,24 @@ const Connect = () => {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 relative z-10">
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Target Identity</label>
                                 <input
                                     className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm"
-                                    placeholder="Full Name / Handle" type="text" required onFocus={handleInputFocus} onBlur={handleInputBlur}
+                                    placeholder="Full Name / Handle" type="text" required onFocus={() => handleInputFocus('targetIdentity')} onBlur={handleInputBlur}
                                 />
                             </div>
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Comm Link (Email)</label>
                                 <input
                                     className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm"
-                                    placeholder="encrypted@domain.com" type="email" required onFocus={handleInputFocus} onBlur={handleInputBlur}
+                                    placeholder="encrypted@domain.com" type="email" required onFocus={() => handleInputFocus('commLink')} onBlur={handleInputBlur}
                                 />
                             </div>
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Protocol Type</label>
-                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={handleInputFocus} onBlur={handleInputBlur}>
+                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('protocolType')} onBlur={handleInputBlur}>
                                     <option value="" disabled selected>Select objective...</option>
                                     <option value="saas">SaaS Infrastructure</option>
                                     <option value="app">Mobile / Web App</option>
@@ -282,7 +347,7 @@ const Connect = () => {
                             </div>
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Resource Allocation</label>
-                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={handleInputFocus} onBlur={handleInputBlur}>
+                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('resourceAllocation')} onBlur={handleInputBlur}>
                                     <option value="" disabled selected>Estimated capacity...</option>
                                     <option value="small">&lt; $5k (Micro-service)</option>
                                     <option value="medium">$5k - $20k (Standard Build)</option>
@@ -294,7 +359,7 @@ const Connect = () => {
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Data Payload</label>
                                 <textarea
                                     className="w-full bg-background-dark border border-white/10 rounded-lg p-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm resize-none h-40"
-                                    placeholder="Describe your requirements..." required onFocus={handleInputFocus} onBlur={handleInputBlur}
+                                    placeholder="Describe your requirements..." required onFocus={() => handleInputFocus('dataPayload')} onBlur={handleInputBlur}
                                 ></textarea>
                             </div>
                         </div>
@@ -314,19 +379,17 @@ const Connect = () => {
             </div>
 
             {/* Interactive Robot Assistant */}
-            <div className="fixed bottom-8 right-8 z-50 flex items-end gap-4 pointer-events-none">
+            <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-end gap-2 sm:gap-4 pointer-events-none">
                 <div
                     ref={tooltipRef}
-                    className={`${tooltipVisible ? 'opacity-100' : 'opacity-0'} flex flex-col bg-background-dark/95 backdrop-blur-md border border-primary/40 p-4 rounded-xl rounded-br-none shadow-[0_0_20px_rgba(255,106,0,0.2)] transition-opacity duration-300 pointer-events-auto max-w-sm w-[350px]`}
+                    className={`${tooltipVisible ? 'opacity-100' : 'opacity-0'} flex flex-col bg-background-dark/95 backdrop-blur-md border border-primary/40 p-4 rounded-xl rounded-br-none shadow-[0_0_20px_rgba(255,106,0,0.2)] transition-opacity duration-300 pointer-events-auto max-w-sm w-[280px] sm:w-[350px]`}
                 >
                     <div className="flex items-center gap-2 mb-3 pb-2 border-b border-primary/20">
                         <span className="material-symbols-outlined text-primary text-sm animate-pulse">memory</span>
                         <span className="text-xs font-black uppercase tracking-widest text-primary">System Scanner</span>
                     </div>
 
-                    {!metadata ? (
-                        <p className="text-xs text-slate-200 font-mono">{robotMsg}</p>
-                    ) : (
+                    {metadata ? (
                         <div className="flex flex-col gap-3 tooltip-content max-h-[300px] overflow-y-auto pr-2">
                             <h4 className="font-bold text-slate-100 text-sm italic uppercase">{metadata.title}</h4>
                             <div>
@@ -342,12 +405,24 @@ const Connect = () => {
                                 <p className="text-xs text-slate-300 font-mono">{metadata.benefits}</p>
                             </div>
                         </div>
+                    ) : activeInput && inputFieldInfo[activeInput] ? (
+                        <div className="flex flex-col gap-3 tooltip-content">
+                            <div className="flex items-center gap-2">
+                                <span className="material-symbols-outlined text-primary text-sm">{inputFieldInfo[activeInput].icon}</span>
+                                <h4 className="font-bold text-slate-100 text-sm italic uppercase">{inputFieldInfo[activeInput].title}</h4>
+                            </div>
+                            <p className="text-xs text-slate-200 font-mono">{robotMsg}</p>
+                        </div>
+                    ) : (
+                        <p className="text-xs text-slate-200 font-mono">{robotMsg}</p>
                     )}
                 </div>
 
-                <div className="w-32 h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group"
+                <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group"
                     onMouseEnter={() => { if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); }}
                     onMouseLeave={() => setTooltipVisible(false)}
+                    onTouchStart={(e) => { e.preventDefault(); if (!tooltipVisible) { setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); } }}
+                    onTouchEnd={(e) => { e.preventDefault(); setTooltipVisible(false); }}
                 >
                     <img id="robot-image" src={robotImg} alt="Vintage 3D Robot Assistant" className="w-full h-full object-contain filter hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,106,0,0.3)]" />
                 </div>
