@@ -177,6 +177,28 @@ const Connect = () => {
         }
     ];
 
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwAefyUXCSsK43PxmkY_XxNqGcoa4HzwQ93xjzvDHeyHRnVoXNRS4dzH6EQ3MnFXQmZ/exec";
+
+        try {
+            await fetch(scriptURL, {
+                method: "POST",
+                body: new FormData(form),
+                mode: "no-cors"
+            });
+
+            alert("Data successfully sent to Google Sheet!");
+            form.reset();
+        } catch (error) {
+            console.error("Error:", error);
+            alert("Failed to send data.");
+        }
+    };
+
     return (
         <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-24 sm:pb-16 relative z-10 overflow-hidden">
             {/* Background glow effects */}
@@ -223,7 +245,7 @@ const Connect = () => {
                             <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity z-0 pointer-events-none"></div>
                             <div className="aspect-[16/9] bg-background-dark relative overflow-hidden border-b border-white/5 z-10">
                                 <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors z-10"></div>
-                                
+
                                 {project.title === "Enterprise RPA Orchestration" ? (
                                     /* RPA Visual */
                                     <div className="absolute inset-0 flex items-center justify-center">
@@ -307,7 +329,7 @@ const Connect = () => {
 
                 {/* Right: Contact Form */}
                 <div className="lg:col-span-8 reveal delay-200">
-                    <form className="bg-surface-dark border border-white/10 p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden group">
+                    <form onSubmit={handleSubmit} className="bg-surface-dark border border-white/10 p-5 sm:p-8 md:p-12 rounded-2xl shadow-2xl relative overflow-hidden group">
                         <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/5 rounded-full blur-3xl group-hover:bg-accent/10 transition-all duration-1000"></div>
 
                         <div className="mb-10 pb-6 border-b border-white/5 relative z-10 flex items-center gap-4">
@@ -324,6 +346,7 @@ const Connect = () => {
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Target Identity</label>
                                 <input
+                                    name="Target Identity"
                                     className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm"
                                     placeholder="Full Name / Handle" type="text" required onFocus={() => handleInputFocus('targetIdentity')} onBlur={handleInputBlur}
                                 />
@@ -331,13 +354,14 @@ const Connect = () => {
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Comm Link (Email)</label>
                                 <input
+                                    name="Comm Link"
                                     className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm"
                                     placeholder="encrypted@domain.com" type="email" required onFocus={() => handleInputFocus('commLink')} onBlur={handleInputBlur}
                                 />
                             </div>
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Protocol Type</label>
-                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('protocolType')} onBlur={handleInputBlur}>
+                                <select name="Protocol Type" className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('protocolType')} onBlur={handleInputBlur}>
                                     <option value="" disabled selected>Select objective...</option>
                                     <option value="saas">SaaS Infrastructure</option>
                                     <option value="app">Mobile / Web App</option>
@@ -347,7 +371,7 @@ const Connect = () => {
                             </div>
                             <div className="col-span-full md:col-span-1">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Resource Allocation</label>
-                                <select className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('resourceAllocation')} onBlur={handleInputBlur}>
+                                <select name="Resource Allocation" className="w-full bg-background-dark border border-white/10 rounded-lg h-14 px-5 text-slate-100 appearance-none glow-input text-sm focus:bg-background-dark" onFocus={() => handleInputFocus('resourceAllocation')} onBlur={handleInputBlur}>
                                     <option value="" disabled selected>Estimated capacity...</option>
                                     <option value="small">&lt; $5k (Micro-service)</option>
                                     <option value="medium">$5k - $20k (Standard Build)</option>
@@ -358,6 +382,7 @@ const Connect = () => {
                             <div className="col-span-full">
                                 <label className="block text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-3">Data Payload</label>
                                 <textarea
+                                    name="Data Payload"
                                     className="w-full bg-background-dark border border-white/10 rounded-lg p-5 text-slate-100 placeholder:text-slate-600 glow-input text-sm resize-none h-40"
                                     placeholder="Describe your requirements..." required onFocus={() => handleInputFocus('dataPayload')} onBlur={handleInputBlur}
                                 ></textarea>
