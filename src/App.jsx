@@ -14,6 +14,7 @@ import Connect from './components/Connect';
 import BlogArticle from './components/BlogArticle';
 import CourseCurriculum from './components/CourseCurriculum';
 import CourseLesson from './components/CourseLesson';
+import AddCourse from './components/AddCourse';
 
 const Home = () => (
   <main className="max-w-7xl mx-auto px-6 py-8 space-y-16 relative z-10 transition-all duration-300">
@@ -42,6 +43,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/courses/curriculum" element={<CourseCurriculum />} />
           <Route path="/courses/lesson" element={<CourseLesson />} />
+          <Route path="/courses/add" element={<AddCourse />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog-articles" element={<BlogArticle />} />

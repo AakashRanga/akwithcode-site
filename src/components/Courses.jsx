@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Courses = () => {
+  const navigate = useNavigate();
   const courseModules = [
     {
       title: "Mastering C++ Internals",
@@ -78,6 +80,13 @@ const Courses = () => {
                 {filter}
               </button>
             ))}
+            <button
+              onClick={() => navigate('/courses/add')}
+              className="flex items-center gap-2 px-4 py-2 border border-accent-red/30 hover:border-accent-red text-accent-red font-black uppercase text-xs tracking-widest rounded-sm transition-all text-nowrap"
+            >
+              <span className="material-symbols-outlined text-sm">add</span>
+              Add Course
+            </button>
           </div>
           <div className="text-[10px] font-mono text-primary/40 uppercase tracking-widest">
             Displaying 12/256 Modules
@@ -118,7 +127,10 @@ const Courses = () => {
                         {course.progress || course.cost || course.availability}
                       </span>
                     </div>
-                    <button className={`${course.action === "Enroll" ? "border border-primary text-primary hover:bg-primary hover:text-background-dark" : "bg-primary text-background-dark hover:bg-white"} px-6 py-2 font-black uppercase text-sm rounded-sm transition-colors`}>
+                    <button
+                      onClick={() => navigate(course.action === 'Enroll' ? '/courses/curriculum' : '/courses/lesson')}
+                      className={`${course.action === "Enroll" ? "border border-primary text-primary hover:bg-primary hover:text-background-dark" : "bg-primary text-background-dark hover:bg-white"} px-6 py-2 font-black uppercase text-sm rounded-sm transition-colors`}
+                    >
                       {course.action}
                     </button>
                   </div>
