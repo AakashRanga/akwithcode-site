@@ -97,7 +97,7 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
                 w-full md:w-[380px] 
                 h-screen md:h-[350px] 
                 w-full lg:w-[380px] 
-                h-screen lg:h-[600px] 
+                h-screen lg:h-[450px] 
                 
                 flex flex-col transition-all duration-300`}
             >
