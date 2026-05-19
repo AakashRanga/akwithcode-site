@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import robotImg from '../assets/robot_img.png';
+import AIChatbot from './AIChatbot';
 
 const Connect = () => {
     const [robotMsg, setRobotMsg] = useState("Let's build your project together.");
     const [metadata, setMetadata] = useState(null);
     const [tooltipVisible, setTooltipVisible] = useState(false);
     const [activeInput, setActiveInput] = useState(null);
+    const [isSystemIdle, setIsSystemIdle] = useState(false);
     const tooltipRef = useRef(null);
     const observerRef = useRef(null);
     const idleTimeoutRef = useRef(null);
@@ -123,6 +125,7 @@ const Connect = () => {
         // Set idle message after a short delay
         idleTimeoutRef.current = setTimeout(() => {
             setRobotMsg("System Idle.");
+            setIsSystemIdle(true);
         }, 500);
     };
 
@@ -148,6 +151,7 @@ const Connect = () => {
                 setMetadata(null);
                 setRobotMsg("System Idle.");
                 setTooltipVisible(false);
+                setIsSystemIdle(true);
             }
         }, 500);
     };
@@ -202,7 +206,7 @@ const Connect = () => {
     return (
         <main className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 pb-24 sm:pb-16 relative z-10 overflow-hidden">
             {/* Background glow effects */}
-            <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+            <div className="fixed inset-0 z-40 pointer-events-none flex flex-col-reverse items-start justify-end gap-2 pt-[10px] sm:gap-4 sm:bottom-4 sm:left-4 sm:inset-auto p-0 sm:p-0">
                 <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen opacity-50 animate-pulse-slow"></div>
                 <div className="absolute bottom-0 left-[-20%] w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] mix-blend-screen opacity-50"></div>
             </div>
@@ -403,7 +407,7 @@ const Connect = () => {
                 </div>
             </div>
 
-            {/* Interactive Robot Assistant */}
+            {/* Interactive Robot Assistant with Tooltip */}
             <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-end gap-2 sm:gap-4 pointer-events-none">
                 <div
                     ref={tooltipRef}
@@ -443,15 +447,25 @@ const Connect = () => {
                     )}
                 </div>
 
-                <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group"
-                    onMouseEnter={() => { if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); }}
+                <div className={`w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group ${isSystemIdle ? 'animate-shake' : ''}`}
+                    onMouseEnter={() => { setIsSystemIdle(false); if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); }}
                     onMouseLeave={() => setTooltipVisible(false)}
-                    onTouchStart={(e) => { e.preventDefault(); if (!tooltipVisible) { setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); } }}
+                    onTouchStart={(e) => { e.preventDefault(); setIsSystemIdle(false); if (!tooltipVisible) { setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); } }}
                     onTouchEnd={(e) => { e.preventDefault(); setTooltipVisible(false); }}
                 >
                     <img id="robot-image" src={robotImg} alt="Vintage 3D Robot Assistant" className="w-full h-full object-contain filter hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,106,0,0.3)]" />
                 </div>
             </div>
+
+            {/* AI Chatbot */}
+            <AIChatbot 
+                onCardEnter={handleCardEnter}
+                onCardLeave={handleCardLeave}
+                onInputFocus={handleInputFocus}
+                onInputBlur={handleInputBlur}
+                isSystemIdle={isSystemIdle}
+                onIdleClose={() => setIsSystemIdle(false)}
+            />
         </main>
     );
 };

@@ -118,6 +118,16 @@
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  .animate-shake {
+    animation: shake 0.6s cubic-bezier(0.36, 0, 0.66, 1) infinite;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+  }
+
   .glow-input {
     transition: all 0.3s ease;
     outline: none;
@@ -212,5 +222,25 @@
     background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBL0Quu9-YOLz3VvcmyLQNMHSKUFaznEA6_sTDc_h_J6NpETFqQAx_gGFir4zdIeLLmaCLetMYaJyszMDe-89ZnukKBf42YCxTFQ7-DqZdRXsjTyfknv2pSuqJcXpEouEcQWS-VAICTz1n-6NUmPZO8kYDlGumhloItWOOvUMbEijnKaT-_pIxhBg-NvdaGw4zsoQvHI3ivywLQXDBtl-c9boYuQQaRoYbtMITiq85yXWiQfZmQ_pbEfkz6UTXGzDpn0vbyQ_CFtwc);
     opacity: 0.1;
     pointer-events: none;
+  }
+
+  /* Custom Scrollbar for Chat */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 106, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 106, 0, 0.3);
+    border-radius: 3px;
+    transition: background 0.3s;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 106, 0, 0.6);
   }
 }
