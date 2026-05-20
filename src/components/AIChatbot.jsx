@@ -7,6 +7,9 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
     const messagesEndRef = useRef(null);
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [conversationStarted, setConversationStarted] = useState(false);
+    const abortControllerRef = useRef(null);
+    const AGENT_API_URL = "http://localhost:5000/automation";
+    const REQUEST_TIMEOUT_MS = 300000; // 5 minutes
 
     useEffect(() => {
         if (isSystemIdle && !isChatOpen) {
@@ -40,17 +43,74 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
         setInputValue("");
         setIsTyping(true);
 
-        // Simulate bot response
-        setTimeout(() => {
-            const botResponse = {
-                id: messages.length + 2,
-                text: generateBotResponse(inputValue),
-                sender: "bot",
-                timestamp: new Date()
-            };
-            setMessages(prev => [...prev, botResponse]);
+        sendAgentRequest(userMessage.text);
+    };
+
+    const sendAgentRequest = async (question) => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+        }
+
+        const botMessageId = Date.now();
+        const botMessage = {
+            id: botMessageId,
+            text: "",
+            sender: "bot",
+            timestamp: new Date()
+        };
+        setMessages(prev => [...prev, botMessage]);
+
+        const controller = new AbortController();
+        abortControllerRef.current = controller;
+
+        const timeoutId = window.setTimeout(() => {
+            controller.abort();
+        }, REQUEST_TIMEOUT_MS);
+
+        try {
+            const response = await fetch(AGENT_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question }),
+                signal: controller.signal
+            });
+
+            if (!response.ok) {
+                throw new Error(`API error: ${response.status}`);
+            }
+
+            const contentType = response.headers.get('content-type') || '';
+            let assistantText = '';
+
+            if (contentType.includes('application/json')) {
+                const json = await response.json();
+                assistantText = json.answer ?? json.response ?? json.text ?? JSON.stringify(json);
+            } else {
+                assistantText = await response.text();
+            }
+
+            setMessages(prev => prev.map(msg => msg.id === botMessageId ? { ...msg, text: assistantText } : msg));
+        } catch (error) {
+            if (error.name === 'AbortError') {
+                setMessages(prev => prev.map(msg =>
+                    msg.id === botMessageId
+                        ? { ...msg, text: 'The request timed out. Please try again.' }
+                        : msg
+                ));
+            } else {
+                setMessages(prev => prev.map(msg =>
+                    msg.id === botMessageId
+                        ? { ...msg, text: 'Sorry, I could not reach the assistant. Please try again.' }
+                        : msg
+                ));
+            }
+        } finally {
+            window.clearTimeout(timeoutId);
             setIsTyping(false);
-        }, 800);
+            abortControllerRef.current = null;
+        }
     };
 
     const handleStartConversation = () => {
@@ -63,26 +123,6 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
         };
         setMessages([initialMessage]);
         onIdleClose();
-    };
-
-    const generateBotResponse = (userInput) => {
-        const responses = {
-            hello: "Hello! I'm here to help you build amazing projects. What are you interested in?",
-            project: "Great! Tell me more about your project vision. I can help with SaaS infrastructure, web apps, mobile development, or security audits.",
-            course: "We offer comprehensive courses on advanced architectural patterns, system design, and modern tech stacks. Would you like to explore our curriculum?",
-            help: "I can assist you with various areas - project consultation, technical guidance, course information, or connecting you with our team. What interests you?",
-            price: "Our pricing is flexible and scales with your project requirements. You can select from Micro-service, Standard Build, or Enterprise Grade options.",
-            contact: "You can reach out directly to our team at hello@akwithcode.system for a personalized consultation.",
-            default: "That's interesting! I'm here to help guide you through our services. Feel free to ask about courses, projects, or how we can collaborate."
-        };
-
-        const lowerInput = userInput.toLowerCase();
-        for (const key in responses) {
-            if (lowerInput.includes(key)) {
-                return responses[key];
-            }
-        }
-        return responses.default;
     };
 
     return (
