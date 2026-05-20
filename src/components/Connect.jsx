@@ -217,7 +217,7 @@ const Connect = () => {
                 <div className="inline-block bg-primary/20 text-primary border border-primary/40 px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] mb-6 shadow-[0_0_15px_rgba(255,106,0,0.2)]">
                     Secure Handshake Initialization
                 </div>
-                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tighter uppercase italic mb-8 text-slate-100">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-[1.1] sm:leading-[0.9] tracking-tighter uppercase italic mb-8 text-slate-100">
                     Build The <br /> <span className="text-primary underline decoration-accent-red decoration-4 underline-offset-8">Future</span>
                 </h1>
                 <p className="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">

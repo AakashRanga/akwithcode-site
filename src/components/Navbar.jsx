@@ -6,6 +6,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
+  const isActive = (href) => {
+    if (href === '/') return location.pathname === '/';
+    return location.pathname.startsWith(href);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -55,11 +60,11 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <Link 
                   key={link.name} 
-                  className={`text-sm font-bold uppercase tracking-widest transition-colors relative group ${location.pathname === link.href ? 'text-primary' : 'text-slate-900 dark:text-slate-100 hover:text-primary'}`} 
+                  className={`text-sm font-bold uppercase tracking-widest transition-colors relative group ${isActive(link.href) ? 'text-primary' : 'text-slate-900 dark:text-slate-100 hover:text-primary'}`} 
                   to={link.href}
                 >
                   {link.name}
-                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all group-hover:w-full ${location.pathname === link.href ? 'w-full' : 'w-0'}`}></span>
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all group-hover:w-full ${isActive(link.href) ? 'w-full' : 'w-0'}`}></span>
                 </Link>
               ))}
             </nav>
@@ -123,9 +128,9 @@ const Navbar = () => {
                 key={link.name} 
                 to={link.href} 
                 onClick={() => setIsMenuOpen(false)}
-                className={`flex items-center gap-4 text-sm font-bold uppercase tracking-widest py-4 border-b border-primary/5 group transition-all ${location.pathname === link.href ? 'text-primary' : 'text-slate-900 dark:text-slate-100 hover:text-primary'}`}
+                className={`flex items-center gap-4 text-sm font-bold uppercase tracking-widest py-4 border-b border-primary/5 group transition-all ${isActive(link.href) ? 'text-primary' : 'text-slate-900 dark:text-slate-100 hover:text-primary'}`}
               >
-                <span className={`material-symbols-outlined text-lg group-hover:text-primary ${location.pathname === link.href ? 'text-primary' : 'text-primary/60'}`}>{link.icon}</span>
+                <span className={`material-symbols-outlined text-lg group-hover:text-primary ${isActive(link.href) ? 'text-primary' : 'text-primary/60'}`}>{link.icon}</span>
                 {link.name}
               </Link>
             ))}

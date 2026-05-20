@@ -18,7 +18,7 @@ const BlogArticle = () => {
           
           <div className="grid lg:grid-cols-12 gap-12 items-end">
             <div className="lg:col-span-8">
-              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-600 uppercase mb-8">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] sm:leading-[0.9] tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-zinc-600 uppercase mb-8">
                 DEEP DIVE: ARCHITECTING <span className="text-primary">SCALABLE</span> MICROSERVICES
               </h1>
               

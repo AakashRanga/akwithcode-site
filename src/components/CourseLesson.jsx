@@ -4,49 +4,196 @@ const CourseLesson = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const videoRef = useRef(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [hasStarted, setHasStarted] = useState(false);
+  const playerRef = useRef(null);
+  const containerRef = useRef(null);
+
+  // Monitor viewport width for dynamic fullscreen adaptation
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Load YouTube Player API and initialize (using a polling check for extra safety)
+  useEffect(() => {
+    let player;
+    let checkInterval;
+
+    const initializePlayer = () => {
+      if (!window.YT || !window.YT.Player) return;
+
+      if (playerRef.current && playerRef.current.destroy) {
+        try {
+          playerRef.current.destroy();
+        } catch (e) {
+          console.error("Error destroying previous player:", e);
+        }
+      }
+
+      player = new window.YT.Player('yt-player', {
+        videoId: 'IZF-rOe9u-g', // Requested YouTube video ID
+        playerVars: {
+          controls: 0,
+          disablekb: 1,
+          rel: 0,
+          modestbranding: 1,
+          showinfo: 0,
+          fs: 0,
+          playsinline: 1,
+          iv_load_policy: 3
+        },
+        events: {
+          onReady: (event) => {
+            setDuration(event.target.getDuration());
+          },
+          onStateChange: (event) => {
+            if (event.data === window.YT.PlayerState.PLAYING) {
+              setIsPlaying(true);
+              setHasStarted(true);
+            } else if (event.data === window.YT.PlayerState.PAUSED) {
+              setIsPlaying(false);
+            } else if (event.data === window.YT.PlayerState.ENDED) {
+              setIsPlaying(false);
+              setCurrentTime(0);
+            }
+          }
+        }
+      });
+      playerRef.current = player;
+    };
+
+    if (!document.getElementById('youtube-iframe-api-script')) {
+      const tag = document.createElement('script');
+      tag.id = 'youtube-iframe-api-script';
+      tag.src = "https://www.youtube.com/iframe_api";
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+
+    checkInterval = setInterval(() => {
+      if (window.YT && window.YT.Player) {
+        clearInterval(checkInterval);
+        initializePlayer();
+      }
+    }, 100);
+
+    return () => {
+      if (checkInterval) clearInterval(checkInterval);
+      if (player && player.destroy) {
+        try {
+          player.destroy();
+        } catch (e) {
+          console.error("Error destroying player on cleanup:", e);
+        }
+      }
+    };
+  }, []);
+
+  // Poll duration and current playback time
+  useEffect(() => {
+    let interval;
+    if (isPlaying && playerRef.current && playerRef.current.getCurrentTime) {
+      interval = setInterval(() => {
+        setCurrentTime(playerRef.current.getCurrentTime());
+      }, 250);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isPlaying]);
+
+  // Lock scrolling when in mobile pseudo-fullscreen mode
+  useEffect(() => {
+    if (isFullscreen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen, isMobile]);
+
+  // Listen for native browser fullscreen changes (Desktop only)
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!isMobile) {
+        setIsFullscreen(
+          !!(document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement)
+        );
+      }
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      document.removeEventListener('webkitfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('mozfullscreenchange', handleFullscreenChange);
+      document.removeEventListener('MSFullscreenChange', handleFullscreenChange);
+    };
+  }, [isMobile]);
 
   const togglePlay = () => {
-    if (!videoRef.current) return;
+    if (!playerRef.current || typeof playerRef.current.playVideo !== 'function') {
+      console.warn("YouTube player is not fully loaded yet.");
+      return;
+    }
     if (isPlaying) {
-      videoRef.current.pause();
+      playerRef.current.pauseVideo();
+      setIsPlaying(false);
     } else {
-      videoRef.current.play().catch(err => console.log("Video playback error: ", err));
-    }
-    setIsPlaying(!isPlaying);
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration);
+      playerRef.current.playVideo();
+      setIsPlaying(true);
+      setHasStarted(true);
     }
   };
 
   const handleProgressClick = (e) => {
-    if (videoRef.current && duration > 0) {
+    if (playerRef.current && playerRef.current.seekTo && duration > 0) {
       const rect = e.currentTarget.getBoundingClientRect();
       const clickX = e.clientX - rect.left;
       const width = rect.width;
       const newTime = (clickX / width) * duration;
-      videoRef.current.currentTime = newTime;
+      playerRef.current.seekTo(newTime, true);
       setCurrentTime(newTime);
     }
   };
 
   const toggleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if (videoRef.current.webkitRequestFullscreen) {
-        videoRef.current.webkitRequestFullscreen();
-      } else if (videoRef.current.msRequestFullscreen) {
-        videoRef.current.msRequestFullscreen();
+    if (isMobile) {
+      // Mobile: Toggle pseudo-fullscreen (stays portrait/vertical)
+      setIsFullscreen(!isFullscreen);
+    } else {
+      // Desktop: Request native browser fullscreen (goes landscape/horizontal on desktop screens)
+      if (!containerRef.current) return;
+
+      if (!document.fullscreenElement &&
+        !document.webkitFullscreenElement &&
+        !document.mozFullScreenElement &&
+        !document.msFullscreenElement) {
+        const req = containerRef.current.requestFullscreen ||
+          containerRef.current.webkitRequestFullscreen ||
+          containerRef.current.mozRequestFullScreen ||
+          containerRef.current.msRequestFullscreen;
+        if (req) req.call(containerRef.current);
+      } else {
+        const exit = document.exitFullscreen ||
+          document.webkitExitFullscreen ||
+          document.mozCancelFullScreen ||
+          document.msExitFullscreen;
+        if (exit) exit.call(document);
       }
     }
   };
@@ -61,27 +208,49 @@ const CourseLesson = () => {
   return (
     <div className="relative flex flex-col min-h-screen w-full overflow-x-hidden pt-16">
       <div className="fixed inset-0 grain-texture z-50 pointer-events-none"></div>
-      
-      <main className="max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 relative z-10">
+
+      <main className={`max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 relative ${isFullscreen && isMobile ? 'z-[1000]' : 'z-10'}`}>
         {/* Left Column: Video & Content */}
         <div className="flex flex-col gap-6 w-full min-w-0">
           {/* Video Player */}
-          <div className="relative group rounded-xl overflow-hidden border-2 border-primary/30 glow-border bg-black aspect-video select-none">
-            <video
-              ref={videoRef}
-              src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-              poster="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ0tGmYlG4ygMrV_Uk5hLhreYF5P9htQOQ1Yd8YTJRo3fF1-phQOv0pVZa5fehRVnSzrwJyq70zhRYjUc34S1-dawJE2EYtpoK7sdMQgCzmLX0TB8mrQFdM8pAbO6EX73iJeCrnH_bAE-wAxMItHiiPsoqPCnNokF10u0ne6wsTWrkPI9m82dXbf0xSKT14q_7JsMMdM61DLrY2iSBnFQeccOS7LX8g7MvavnqZk6u_WeoFoGsPTq7zPDqo-VbQSDv0QZsxk6I9oc"
-              className="w-full h-full object-cover"
-              onClick={togglePlay}
-              onTimeUpdate={handleTimeUpdate}
-              onLoadedMetadata={handleLoadedMetadata}
-              playsInline
-            />
-            
-            {/* Play/Pause Center Button Overlay when paused */}
-            {!isPlaying && (
+          <div
+            ref={containerRef}
+            onClick={togglePlay}
+            className={`relative group overflow-hidden border-2 border-primary/30 glow-border bg-black select-none transition-all duration-300 cursor-pointer ${isFullscreen
+              ? (isMobile
+                ? "fixed inset-0 z-[1000] w-screen h-screen rounded-none border-none flex flex-col justify-center bg-black"
+                : "w-full h-full rounded-none border-none")
+              : "rounded-xl aspect-video"
+              }`}
+          >
+            {/* YouTube Player Target */}
+            <div className={`w-full overflow-hidden ${isFullscreen && isMobile ? "max-h-[85vh] aspect-video" : "h-full"}`}>
+              <div id="yt-player" className="w-full h-full pointer-events-none scale-[1.35] origin-center"></div>
+            </div>
+
+            {/* Thumbnail/Cover Overlay before the video starts */}
+            {!hasStarted && (
+              <div
+                className="absolute inset-0 z-10 bg-cover bg-center flex items-center justify-center pointer-events-none"
+                style={{ backgroundImage: `url(https://img.youtube.com/vi/IZF-rOe9u-g/maxresdefault.jpg)` }}
+              >
+                {/* Dark tint overlay */}
+                <div className="absolute inset-0 bg-black/40"></div>
+
+                {/* Center Play Button */}
+                <button
+                  onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                  className="relative z-10 size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
+                >
+                  <span className="material-symbols-outlined text-4xl sm:text-5xl">play_arrow</span>
+                </button>
+              </div>
+            )}
+
+            {/* Play/Pause Center Button Overlay when paused after video started */}
+            {!isPlaying && hasStarted && (
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
-                <button 
+                <button
                   onClick={(e) => { e.stopPropagation(); togglePlay(); }}
                   className="size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
                 >
@@ -91,25 +260,28 @@ const CourseLesson = () => {
             )}
 
             {/* Video Controls Overlay */}
-            <div className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300">
-              <div 
+            <div
+              className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300 z-20"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div
                 className="h-1.5 w-full bg-slate-700/60 rounded-full mb-3 relative cursor-pointer"
                 onClick={handleProgressClick}
               >
-                <div 
+                <div
                   className="absolute left-0 top-0 h-full bg-primary rounded-full"
                   style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
                 ></div>
-                <div 
+                <div
                   className="absolute top-1/2 -translate-y-1/2 size-3.5 bg-white rounded-full border-2 border-primary shadow-glow transition-all"
                   style={{ left: `calc(${duration > 0 ? (currentTime / duration) * 100 : 0}% - 7px)` }}
                 ></div>
               </div>
-              
+
               <div className="flex justify-between items-center text-xs font-mono text-slate-300">
                 <div className="flex items-center gap-3">
-                  <button 
-                    onClick={togglePlay} 
+                  <button
+                    onClick={togglePlay}
                     className="hover:text-primary transition-colors cursor-pointer flex items-center"
                   >
                     <span className="material-symbols-outlined text-lg">
@@ -118,15 +290,17 @@ const CourseLesson = () => {
                   </button>
                   <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
                 </div>
-                
+
                 <div className="flex gap-4 items-center">
                   {/* Settings icon is removed as requested by the user */}
-                  <button 
-                    onClick={toggleFullscreen} 
+                  <button
+                    onClick={toggleFullscreen}
                     className="hover:text-primary transition-colors cursor-pointer flex items-center"
-                    title="Fullscreen"
+                    title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
                   >
-                    <span className="material-symbols-outlined text-lg">fullscreen</span>
+                    <span className="material-symbols-outlined text-lg">
+                      {isFullscreen ? "fullscreen_exit" : "fullscreen"}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -272,7 +446,7 @@ const CourseLesson = () => {
               <div className="text-green-500">ak@linux:~/projects/memory-mastery$ ./main</div>
               <div className="text-slate-100">Value: 42</div>
               <div className="text-green-500 flex items-center gap-1">
-                <span>ak@linux:~/projects/memory-mastery$</span> 
+                <span>ak@linux:~/projects/memory-mastery$</span>
                 <span className="size-1.5 bg-green-500 animate-pulse inline-block"></span>
               </div>
             </div>
