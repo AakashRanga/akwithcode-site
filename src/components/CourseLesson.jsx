@@ -10,7 +10,7 @@ const CourseLesson = () => {
   const playerRef = useRef(null);
   const containerRef = useRef(null);
 
-  // Monitor viewport width for dynamic fullscreen adaptation
+  // Monitor viewport width for dynamic layout adaptations
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -36,6 +36,8 @@ const CourseLesson = () => {
       }
 
       player = new window.YT.Player('yt-player', {
+        width: '100%',
+        height: '100%',
         videoId: 'IZF-rOe9u-g', // Requested YouTube video ID
         playerVars: {
           controls: 0,
@@ -107,9 +109,9 @@ const CourseLesson = () => {
     };
   }, [isPlaying]);
 
-  // Lock scrolling when in mobile pseudo-fullscreen mode
+  // Lock scrolling when in desktop fullscreen mode
   useEffect(() => {
-    if (isFullscreen && isMobile) {
+    if (isFullscreen && !isMobile) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -205,103 +207,107 @@ const CourseLesson = () => {
     return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   };
 
+  const showFullscreen = !isMobile && isFullscreen;
+
   return (
     <div className="relative flex flex-col min-h-screen w-full overflow-x-hidden pt-16">
       <div className="fixed inset-0 grain-texture z-50 pointer-events-none"></div>
 
-      <main className={`max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 relative ${isFullscreen && isMobile ? 'z-[1000]' : 'z-10'}`}>
+      <main className={`max-w-[1600px] w-full mx-auto p-4 sm:p-6 lg:p-12 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 relative ${showFullscreen && isMobile ? 'z-[1000]' : 'z-10'}`}>
         {/* Left Column: Video & Content */}
         <div className="flex flex-col gap-6 w-full min-w-0">
           {/* Video Player */}
           <div
             ref={containerRef}
             onClick={togglePlay}
-            className={`relative group overflow-hidden border-2 border-primary/30 glow-border bg-black select-none transition-all duration-300 cursor-pointer ${isFullscreen
-              ? (isMobile
-                ? "fixed inset-0 z-[1000] w-screen h-screen rounded-none border-none flex flex-col justify-center bg-black"
-                : "w-full h-full rounded-none border-none")
+            className={`relative group overflow-hidden border-2 border-primary/30 glow-border bg-black select-none transition-all duration-300 cursor-pointer ${showFullscreen
+              ? "fixed inset-0 z-[1000] w-screen h-screen rounded-none border-none flex flex-col justify-center items-center bg-black"
               : "rounded-xl aspect-video"
               }`}
           >
-            {/* YouTube Player Target */}
-            <div className={`w-full overflow-hidden ${isFullscreen && isMobile ? "max-h-[85vh] aspect-video" : "h-full"}`}>
-              <div id="yt-player" className="w-full h-full pointer-events-none scale-[1.35] origin-center"></div>
-            </div>
+            {/* YouTube Player Target & Overlays inside 16:9 aspect box */}
+            <div className={`overflow-hidden relative ${showFullscreen
+              ? "w-full aspect-video max-h-[85vh]"
+              : "absolute inset-0 w-full h-full"
+              }`}>
+              <div id="yt-player" className="w-full h-full pointer-events-none scale-[1.90] sm:scale-[1.90] origin-center"></div>
 
-            {/* Thumbnail/Cover Overlay before the video starts */}
-            {!hasStarted && (
-              <div
-                className="absolute inset-0 z-10 bg-cover bg-center flex items-center justify-center pointer-events-none"
-                style={{ backgroundImage: `url(https://img.youtube.com/vi/IZF-rOe9u-g/maxresdefault.jpg)` }}
-              >
-                {/* Dark tint overlay */}
-                <div className="absolute inset-0 bg-black/40"></div>
-
-                {/* Center Play Button */}
-                <button
-                  onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-                  className="relative z-10 size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-4xl sm:text-5xl">play_arrow</span>
-                </button>
-              </div>
-            )}
-
-            {/* Play/Pause Center Button Overlay when paused after video started */}
-            {!isPlaying && hasStarted && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none">
-                <button
-                  onClick={(e) => { e.stopPropagation(); togglePlay(); }}
-                  className="size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
-                >
-                  <span className="material-symbols-outlined text-4xl sm:text-5xl">play_arrow</span>
-                </button>
-              </div>
-            )}
-
-            {/* Video Controls Overlay */}
-            <div
-              className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300 z-20"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div
-                className="h-1.5 w-full bg-slate-700/60 rounded-full mb-3 relative cursor-pointer"
-                onClick={handleProgressClick}
-              >
+              {/* Thumbnail/Cover Overlay before the video starts */}
+              {!hasStarted && (
                 <div
-                  className="absolute left-0 top-0 h-full bg-primary rounded-full"
-                  style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
-                ></div>
-                <div
-                  className="absolute top-1/2 -translate-y-1/2 size-3.5 bg-white rounded-full border-2 border-primary shadow-glow transition-all"
-                  style={{ left: `calc(${duration > 0 ? (currentTime / duration) * 100 : 0}% - 7px)` }}
-                ></div>
-              </div>
+                  className="absolute inset-0 z-10 bg-cover bg-center flex items-center justify-center pointer-events-none"
+                  style={{ backgroundImage: `url(https://img.youtube.com/vi/IZF-rOe9u-g/maxresdefault.jpg)` }}
+                >
+                  {/* Dark tint overlay */}
+                  <div className="absolute inset-0 bg-black/40"></div>
 
-              <div className="flex justify-between items-center text-xs font-mono text-slate-300">
-                <div className="flex items-center gap-3">
+                  {/* Center Play Button */}
                   <button
-                    onClick={togglePlay}
-                    className="hover:text-primary transition-colors cursor-pointer flex items-center"
+                    onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                    className="relative z-10 size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
                   >
-                    <span className="material-symbols-outlined text-lg">
-                      {isPlaying ? 'pause' : 'play_arrow'}
-                    </span>
+                    <span className="material-symbols-outlined text-4xl sm:text-5xl">play_arrow</span>
                   </button>
-                  <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+                </div>
+              )}
+
+              {/* Play/Pause Center Button Overlay when paused after video started */}
+              {!isPlaying && hasStarted && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 pointer-events-none z-10">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); togglePlay(); }}
+                    className="size-16 sm:size-20 bg-primary/95 hover:bg-primary text-white rounded-full flex items-center justify-center transition-transform hover:scale-110 shadow-2xl pointer-events-auto cursor-pointer"
+                  >
+                    <span className="material-symbols-outlined text-4xl sm:text-5xl">play_arrow</span>
+                  </button>
+                </div>
+              )}
+
+              {/* Video Controls Overlay */}
+              <div
+                className="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity duration-300 z-20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <div
+                  className="h-1.5 w-full bg-slate-700/60 rounded-full mb-3 relative cursor-pointer"
+                  onClick={handleProgressClick}
+                >
+                  <div
+                    className="absolute left-0 top-0 h-full bg-primary rounded-full"
+                    style={{ width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%` }}
+                  ></div>
+                  <div
+                    className="absolute top-1/2 -translate-y-1/2 size-3.5 bg-white rounded-full border-2 border-primary shadow-glow transition-all"
+                    style={{ left: `calc(${duration > 0 ? (currentTime / duration) * 100 : 0}% - 7px)` }}
+                  ></div>
                 </div>
 
-                <div className="flex gap-4 items-center">
-                  {/* Settings icon is removed as requested by the user */}
-                  <button
-                    onClick={toggleFullscreen}
-                    className="hover:text-primary transition-colors cursor-pointer flex items-center"
-                    title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-                  >
-                    <span className="material-symbols-outlined text-lg">
-                      {isFullscreen ? "fullscreen_exit" : "fullscreen"}
-                    </span>
-                  </button>
+                <div className="flex justify-between items-center text-xs font-mono text-slate-300">
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={togglePlay}
+                      className="hover:text-primary transition-colors cursor-pointer flex items-center"
+                    >
+                      <span className="material-symbols-outlined text-lg">
+                        {isPlaying ? 'pause' : 'play_arrow'}
+                      </span>
+                    </button>
+                    <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
+                  </div>
+
+                  {!isMobile && (
+                    <div className="flex gap-4 items-center">
+                      <button
+                        onClick={toggleFullscreen}
+                        className="hover:text-primary transition-colors cursor-pointer flex items-center"
+                        title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+                      >
+                        <span className="material-symbols-outlined text-lg">
+                          {isFullscreen ? "fullscreen_exit" : "fullscreen"}
+                        </span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
