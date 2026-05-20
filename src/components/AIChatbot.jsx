@@ -45,7 +45,7 @@ const AIChatbot = ({
     // const AGENT_API_URL =
     //     import.meta.env.VITE_AGENT_API_URL ||
     //     "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation/stream";
-    const AGENT_API_URL = "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation";
+    const AGENT_API_URL = "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation/stream";
 
     // 15 minutes
     const REQUEST_TIMEOUT_MS = 900000;
@@ -412,7 +412,7 @@ const AIChatbot = ({
                                         `}
                                     >
 
-                                        <p className="text-xs sm:text-sm whitespace-pre-wrap break-words">
+                                        <p className="text-xs sm:text-sm break-words">
                                             {message.text}
                                         </p>
 
