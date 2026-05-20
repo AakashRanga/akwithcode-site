@@ -17,7 +17,7 @@ const AIChatbot = ({
     const messagesEndRef = useRef(null);
     const [conversationStarted, setConversationStarted] = useState(false);
     const abortControllerRef = useRef(null);
-    const AGENT_API_URL = "https://diy-ongoing-chess-cartridges.trycloudflare.com";
+    const AGENT_API_URL = "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation";
     const REQUEST_TIMEOUT_MS = 300000; // 5 minutes
 
     useEffect(() => {
