@@ -92,12 +92,13 @@ const Blog = () => {
   ];
 
   return (
-    <main className="pt-16 pb-20 px-6 max-w-7xl mx-auto overflow-x-hidden">
+    <main className="pt-16 pb-20 px-4 sm:px-6 max-w-7xl mx-auto overflow-x-hidden">
       {/* Hero Section: Featured Article */}
-      <section className="relative mb-20 group">
+      <section className="relative mb-16 sm:mb-20 group">
         <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-accent-red/10 rounded-xl blur-3xl opacity-30"></div>
-        <div className="relative bg-slate-900/40 rounded-xl overflow-hidden border border-white/5 flex flex-col lg:flex-row min-h-[500px]">
-          <div className="lg:w-3/5 relative overflow-hidden">
+        <div className="relative bg-slate-900/40 rounded-xl overflow-hidden border border-white/5 flex flex-col lg:flex-row min-h-[480px] sm:min-h-[500px]">
+          {/* Image Container with fixed height on mobile and auto height on desktop */}
+          <div className="w-full h-[260px] sm:h-[360px] lg:h-auto lg:w-3/5 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
             <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
             <div className="relative w-full h-full overflow-hidden">
@@ -110,44 +111,46 @@ const Blog = () => {
                   <div key={i} className="min-w-full relative h-full">
                     <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent z-10"></div>
                     <div className="absolute inset-0 bg-primary/10 mix-blend-overlay z-10"></div>
-                    <img alt={slide.label} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src={slide.img} />
-                    <div className="absolute top-16 left-6 z-20">
+                    <img alt={slide.label} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 select-none" src={slide.img} />
+                    <div className="absolute top-12 left-6 z-20">
                       <span className={`${slide.labelBg} px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block`}>{slide.label}</span>
                     </div>
                   </div>
                 ))}
               </div>
               {/* Carousel Indicators */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-30 flex gap-1">
                 {carouselSlides.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setCurrentSlide(i)}
-                    className={`w-2 h-2 rounded-full transition-colors ${currentSlide === i ? 'bg-primary' : 'bg-white/20 hover:bg-primary'}`}
+                    className="p-2 cursor-pointer group"
+                    aria-label={`Go to slide ${i + 1}`}
                   >
+                    <div className={`w-2.5 h-2.5 rounded-full transition-colors ${currentSlide === i ? 'bg-primary' : 'bg-white/20 group-hover:bg-primary'}`} />
                   </button>
                 ))}
               </div>
             </div>
-            <div className="absolute top-6 left-6 z-20">
-              <span className="bg-primary text-background-dark px-4 py-1 font-bold text-xs uppercase tracking-widest sticker-label inline-block">Featured Deep Dive</span>
+            <div className="absolute top-4 left-6 z-20">
+              <span className="bg-primary text-background-dark px-3 py-1 font-bold text-[10px] uppercase tracking-widest sticker-label inline-block">Featured Deep Dive</span>
             </div>
           </div>
-          <div className="lg:w-2/5 p-8 lg:p-12 flex flex-col justify-center vintage-paper bg-background-dark/80 relative">
-            <p className="text-primary font-bold text-sm tracking-[0.3em] mb-4 uppercase">Artificial Intelligence</p>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-6 text-slate-100">
+          <div className="lg:w-2/5 p-6 sm:p-8 lg:p-12 flex flex-col justify-center vintage-paper bg-background-dark/80 relative">
+            <p className="text-primary font-bold text-xs sm:text-sm tracking-[0.3em] mb-3 sm:mb-4 uppercase">Artificial Intelligence</p>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 sm:mb-6 text-slate-100">
               Build A <span className="italic">Google Gemini</span> Chatbot with Modern Tech
               <span className="title-underline"></span>
             </h2>
-            <p className="text-slate-400 text-lg mb-8 font-light leading-relaxed">
+            <p className="text-slate-400 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8 font-light leading-relaxed">
               Master the integration of next-gen Large Language Models into high-performance web applications using HTML5, Tailwind, and JavaScript.
             </p>
-            <div className="flex items-center gap-6">
-              <button className="bg-primary text-background-dark px-8 py-3 rounded-lg font-bold text-base uppercase hover:bg-white transition-colors">
+            <div className="flex items-center gap-4 sm:gap-6">
+              <button className="bg-primary text-background-dark px-6 py-2.5 sm:px-8 sm:py-3 rounded-lg font-bold text-xs sm:text-base uppercase hover:bg-white transition-colors cursor-pointer">
                 Read Article
               </button>
-              <span className="text-slate-500 text-sm font-medium flex items-center gap-2">
-                <span className="material-symbols-outlined text-sm">schedule</span> 12 min read
+              <span className="text-slate-500 text-xs sm:text-sm font-medium flex items-center gap-2 select-none">
+                <span className="material-symbols-outlined text-sm sm:text-base">schedule</span> 12 min read
               </span>
             </div>
           </div>

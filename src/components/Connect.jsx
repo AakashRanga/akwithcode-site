@@ -8,6 +8,7 @@ const Connect = () => {
     const [tooltipVisible, setTooltipVisible] = useState(false);
     const [activeInput, setActiveInput] = useState(null);
     const [isSystemIdle, setIsSystemIdle] = useState(false);
+    const [isChatOpen, setIsChatOpen] = useState(false);
     const tooltipRef = useRef(null);
     const observerRef = useRef(null);
     const idleTimeoutRef = useRef(null);
@@ -408,7 +409,7 @@ const Connect = () => {
             </div>
 
             {/* Interactive Robot Assistant with Tooltip */}
-            <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-end gap-2 sm:gap-4 pointer-events-none">
+            <div className={`fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-end gap-2 sm:gap-4 pointer-events-none transition-all duration-300 ${isChatOpen ? 'opacity-0 scale-0 pointer-events-none' : 'opacity-100 scale-100 pointer-events-auto'}`}>
                 <div
                     ref={tooltipRef}
                     className={`${tooltipVisible ? 'opacity-100' : 'opacity-0'} flex flex-col bg-background-dark/95 backdrop-blur-md border border-primary/40 p-4 rounded-xl rounded-br-none shadow-[0_0_20px_rgba(255,106,0,0.2)] transition-opacity duration-300 pointer-events-auto max-w-sm w-[280px] sm:w-[350px]`}
@@ -447,10 +448,12 @@ const Connect = () => {
                     )}
                 </div>
 
-                <div className={`w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group ${isSystemIdle ? 'animate-shake' : ''}`}
-                    onMouseEnter={() => { setIsSystemIdle(false); if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); }}
+                <div 
+                    onClick={() => { setIsChatOpen(true); setIsSystemIdle(false); }}
+                    className={`w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32 relative overflow-visible pointer-events-auto cursor-pointer flex-shrink-0 animate-float drop-shadow-[0_15px_15px_rgba(255,106,0,0.15)] group ${isSystemIdle ? 'animate-shake' : ''}`}
+                    onMouseEnter={() => { setIsSystemIdle(false); if (!tooltipVisible) setTooltipVisible(true); setRobotMsg("I am ready to assist. Click to launch AI system chat or input your connection request."); }}
                     onMouseLeave={() => setTooltipVisible(false)}
-                    onTouchStart={(e) => { e.preventDefault(); setIsSystemIdle(false); if (!tooltipVisible) { setTooltipVisible(true); setRobotMsg("I am ready to assist. Scan a protocol or input your connection request."); } }}
+                    onTouchStart={(e) => { e.preventDefault(); setIsSystemIdle(false); if (!tooltipVisible) { setTooltipVisible(true); setRobotMsg("I am ready to assist. Click to launch AI system chat or input your connection request."); } }}
                     onTouchEnd={(e) => { e.preventDefault(); setTooltipVisible(false); }}
                 >
                     <img id="robot-image" src={robotImg} alt="Vintage 3D Robot Assistant" className="w-full h-full object-contain filter hover:brightness-110 transition-all duration-300 drop-shadow-[0_0_10px_rgba(255,106,0,0.3)]" />
@@ -459,10 +462,8 @@ const Connect = () => {
 
             {/* AI Chatbot */}
             <AIChatbot 
-                onCardEnter={handleCardEnter}
-                onCardLeave={handleCardLeave}
-                onInputFocus={handleInputFocus}
-                onInputBlur={handleInputBlur}
+                isChatOpen={isChatOpen}
+                setIsChatOpen={setIsChatOpen}
                 isSystemIdle={isSystemIdle}
                 onIdleClose={() => setIsSystemIdle(false)}
             />

@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SaaSSection from './components/SaaSSection';
@@ -15,6 +16,17 @@ import BlogArticle from './components/BlogArticle';
 import CourseCurriculum from './components/CourseCurriculum';
 import CourseLesson from './components/CourseLesson';
 import AddCourse from './components/AddCourse';
+
+// Scroll to top helper component
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
 
 const Home = () => (
   <main className="max-w-7xl mx-auto px-6 py-8 space-y-16 relative z-10 transition-all duration-300">
@@ -33,6 +45,7 @@ const Home = () => (
 function App() {
   return (
     <Router basename="/akwithcode-site">
+      <ScrollToTop />
       <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white relative">
         <div className="fixed inset-0 grain-overlay z-[60] pointer-events-none"></div>
 

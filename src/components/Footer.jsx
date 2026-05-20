@@ -3,15 +3,15 @@ import React from 'react';
 const Footer = () => {
   return (
     <footer className="mt-20 border-t border-primary/20 bg-surface-dark py-12">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-center md:text-left">
           <h2 className="text-xl font-black uppercase tracking-tighter italic mb-2">AK <span className="text-primary">WITH</span> CODE</h2>
           <p className="text-[10px] text-slate-500 tracking-[0.3em] uppercase">Est. 2023 // Architectural Supremacy</p>
         </div>
-        <div className="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-          <a className="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-          <a className="hover:text-primary transition-colors" href="#">Terms of Service</a>
-          <a className="hover:text-primary transition-colors" href="#">Support Terminal</a>
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+          <a className="hover:text-primary transition-colors cursor-pointer" href="#">Privacy Policy</a>
+          <a className="hover:text-primary transition-colors cursor-pointer" href="#">Terms of Service</a>
+          <a className="hover:text-primary transition-colors cursor-pointer" href="#">Support Terminal</a>
         </div>
         <div className="flex gap-4">
           <div className="w-8 h-8 rounded border border-white/10 flex items-center justify-center hover:border-primary cursor-pointer text-white">

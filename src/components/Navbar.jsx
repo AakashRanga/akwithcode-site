@@ -40,7 +40,7 @@ const Navbar = () => {
   return (
     <>
       <header className={`sticky top-0 z-50 w-full border-b border-primary/20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
-        <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
           <div className="flex items-center gap-12">
             <Link className="flex items-center gap-3 group" to="/">
               <div className="bg-primary p-1 rounded-sm rotate-3 group-hover:rotate-0 transition-transform shadow-[0_0_15px_rgba(255,106,0,0.4)]">

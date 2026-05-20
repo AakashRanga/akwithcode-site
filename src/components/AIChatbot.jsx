@@ -1,11 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
+const AIChatbot = ({ 
+    isSystemIdle = false, 
+    onIdleClose = () => {},
+    isChatOpen: controlledChatOpen,
+    setIsChatOpen: controlledSetChatOpen
+}) => {
+    const [localChatOpen, setLocalChatOpen] = useState(false);
+    
+    const isChatOpen = controlledChatOpen !== undefined ? controlledChatOpen : localChatOpen;
+    const setIsChatOpen = controlledSetChatOpen !== undefined ? controlledSetChatOpen : setLocalChatOpen;
+
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState("");
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
-    const [isChatOpen, setIsChatOpen] = useState(false);
     const [conversationStarted, setConversationStarted] = useState(false);
     const abortControllerRef = useRef(null);
     const AGENT_API_URL = "http://localhost:5000/automation";
@@ -17,7 +26,7 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
             setConversationStarted(false);
             setMessages([]);
         }
-    }, [isSystemIdle]);
+    }, [isSystemIdle, isChatOpen, setIsChatOpen]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -126,19 +135,13 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
     };
 
     return (
-        <div className="fixed inset-0 z-40 pointer-events-none flex flex-col-reverse items-start justify-end gap-2 sm:gap-4 sm:bottom-4 sm:left-4 sm:inset-auto p-0 sm:p-0">
+        <div className="fixed bottom-4 left-4 right-4 sm:right-auto sm:w-[380px] z-40 pointer-events-none">
             {/* Chat Window */}
             <div
                 className={`${
                     isChatOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'
-                } bg-surface-dark border border-primary/40 rounded-none sm:rounded-2xl sm:rounded-bl-none shadow-[0_0_30px_rgba(255,106,0,0.3)] overflow-hidden
-                w-full sm:w-[380px] 
-                h-screen sm:h-[400px] 
-                w-full md:w-[380px] 
-                h-screen md:h-[350px] 
-                w-full lg:w-[380px] 
-                h-screen lg:h-[450px] 
-                
+                } bg-surface-dark border border-primary/40 rounded-2xl shadow-[0_0_30px_rgba(255,106,0,0.3)] overflow-hidden
+                w-full h-[450px] max-h-[80vh] sm:max-h-none sm:h-[400px] md:h-[450px] 
                 flex flex-col transition-all duration-300`}
             >
                 {/* Chat Header */}
@@ -159,7 +162,7 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
                             setMessages([]);
                             onIdleClose();
                         }}
-                        className="text-slate-400 hover:text-primary transition-colors p-1 flex-shrink-0"
+                        className="text-slate-400 hover:text-primary transition-colors p-1 flex-shrink-0 cursor-pointer"
                     >
                         <span className="material-symbols-outlined text-lg">close</span>
                     </button>
@@ -178,7 +181,7 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
                             </div>
                             <button
                                 onClick={handleStartConversation}
-                                className="bg-primary text-background-dark px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-white transition-all shadow-[0_0_15px_rgba(255,106,0,0.3)] w-full sm:w-auto max-w-xs"
+                                className="bg-primary text-background-dark px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-bold uppercase text-xs sm:text-sm tracking-wider hover:bg-white transition-all shadow-[0_0_15px_rgba(255,106,0,0.3)] w-full sm:w-auto max-w-xs cursor-pointer"
                             >
                                 OK, Let's Talk
                             </button>
@@ -234,7 +237,7 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
                             <button
                                 type="submit"
                                 disabled={!inputValue.trim()}
-                                className="bg-primary text-background-dark px-3 sm:px-4 py-2 rounded-lg font-bold uppercase text-[10px] sm:text-xs tracking-wider hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-all flex-shrink-0"
+                                className="bg-primary text-background-dark px-3 sm:px-4 py-2 rounded-lg font-bold uppercase text-[10px] sm:text-xs tracking-wider hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed transition-all flex-shrink-0 cursor-pointer"
                             >
                                 <span className="material-symbols-outlined text-sm sm:text-base">send</span>
                             </button>
@@ -242,20 +245,9 @@ const AIChatbot = ({ isSystemIdle = false, onIdleClose = () => {} }) => {
                     </div>
                 )}
             </div>
-
-            {/* Chat Toggle Button */}
-            {/* <button
-                onClick={() => setIsChatOpen(!isChatOpen)}
-                className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-primary to-accent shadow-[0_0_30px_rgba(255,106,0,0.4)] hover:shadow-[0_0_40px_rgba(255,106,0,0.6)] text-background-dark flex items-center justify-center pointer-events-auto transition-all duration-300 transform hover:scale-110 group border-2 border-primary/50 fixed bottom-4 left-4 sm:static"
-            >
-                {isChatOpen ? (
-                    <span className="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl ">close</span>
-                ) : (
-                    <span className="material-symbols-outlined text-2xl sm:text-3xl md:text-4xl animate-bounce">chat</span>
-                )}
-            </button> */}
         </div>
     );
 };
 
 export default AIChatbot;
+

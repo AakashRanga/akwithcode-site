@@ -49,13 +49,13 @@ const Courses = () => {
 
   return (
     <div className="flex-1 flex flex-col grainy-bg min-h-screen">
-      <section className="relative pt-16 pb-12 px-6 md:px-20 overflow-hidden border-b border-primary/10">
+      <section className="relative pt-16 pb-12 px-4 sm:px-6 md:px-20 overflow-hidden border-b border-primary/10">
         <div className="scanline absolute inset-0 opacity-10"></div>
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="inline-block px-3 py-1 mb-4 bg-accent-red text-white text-[10px] font-black tracking-[0.3em] uppercase rounded-sm">
             Access Level: ARCHIVE_ADMIN
           </div>
-          <h1 className="text-slate-100 text-6xl md:text-9xl font-black leading-none tracking-tighter uppercase italic select-none">
+          <h1 className="text-slate-100 text-4xl sm:text-6xl md:text-9xl font-black leading-none tracking-tighter uppercase italic select-none">
             Explore<br />
             <span className="text-primary">Courses</span>
           </h1>
@@ -64,25 +64,25 @@ const Courses = () => {
           </p>
         </div>
         <div className="absolute -right-20 -top-20 opacity-5 pointer-events-none">
-          <span className="material-symbols-outlined text-[300px] text-primary">memory</span>
+          <span className="material-symbols-outlined text-[300px] text-primary select-none">memory</span>
         </div>
       </section>
 
-      <div className="px-6 md:px-20 py-8 bg-background-dark/40 backdrop-blur-sm border-b border-primary/20">
+      <div className="px-4 sm:px-6 md:px-20 py-8 bg-background-dark/40 backdrop-blur-sm border-b border-primary/20">
         <div className="flex flex-wrap gap-4 items-center justify-between">
           <div className="flex flex-wrap gap-2">
-            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-background-dark font-black uppercase text-xs tracking-widest rounded-sm">
+            <button className="flex items-center gap-2 px-4 py-2 bg-primary text-background-dark font-black uppercase text-xs tracking-widest rounded-sm cursor-pointer">
               <span className="material-symbols-outlined text-sm">filter_list</span>
               All Systems
             </button>
             {["Backend", "Low-Level", "Security", "Architecture"].map(filter => (
-              <button key={filter} className="flex items-center gap-2 px-4 py-2 border border-primary/30 hover:border-primary text-primary font-black uppercase text-xs tracking-widest rounded-sm transition-all text-nowrap">
+              <button key={filter} className="flex items-center gap-2 px-4 py-2 border border-primary/30 hover:border-primary text-primary font-black uppercase text-xs tracking-widest rounded-sm transition-all text-nowrap cursor-pointer">
                 {filter}
               </button>
             ))}
             <button
               onClick={() => navigate('/courses/add')}
-              className="flex items-center gap-2 px-4 py-2 border border-accent-red/30 hover:border-accent-red text-accent-red font-black uppercase text-xs tracking-widest rounded-sm transition-all text-nowrap"
+              className="flex items-center gap-2 px-4 py-2 border border-accent-red/30 hover:border-accent-red text-accent-red font-black uppercase text-xs tracking-widest rounded-sm transition-all text-nowrap cursor-pointer"
             >
               <span className="material-symbols-outlined text-sm">add</span>
               Add Course
@@ -94,7 +94,7 @@ const Courses = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-10 px-6 md:px-20 py-12">
+      <div className="flex flex-col lg:flex-row gap-10 px-4 sm:px-6 md:px-20 py-12">
         <div className="flex-1">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {courseModules.map((course, i) => (

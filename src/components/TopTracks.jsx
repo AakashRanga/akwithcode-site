@@ -23,15 +23,15 @@ const TopTracks = () => {
   ];
 
   return (
-    <section className="bg-primary/5 p-8 rounded-2xl border border-primary/20 border-dashed">
-      <div className="flex items-center gap-4 mb-8">
-        <span className="material-symbols-outlined text-primary text-4xl">grade</span>
-        <h3 className="text-3xl font-black uppercase tracking-tighter italic">Top Rated <span className="text-primary">Tracks</span></h3>
+    <section className="bg-primary/5 p-4 sm:p-8 rounded-2xl border border-primary/20 border-dashed">
+      <div className="flex items-center gap-3 sm:gap-4 mb-8">
+        <span className="material-symbols-outlined text-primary text-3xl sm:text-4xl select-none">grade</span>
+        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter italic">Top Rated <span className="text-primary">Tracks</span></h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tracks.map((track, i) => (
           <div key={i} className="bg-surface-dark border border-white/5 p-6 glow-border transition-all group relative">
-            <div className={`absolute -top-3 -right-3 ${track.levelColor} text-[9px] font-black px-3 py-1 uppercase shadow-lg`}>
+            <div className={`absolute -top-2.5 -right-2.5 sm:-top-3 sm:-right-3 ${track.levelColor} text-[9px] font-black px-3 py-1 uppercase shadow-lg`}>
               Level: {track.level}
             </div>
             <div className="flex items-start gap-4">

@@ -3,13 +3,13 @@ import React from 'react';
 const AddCourse = () => {
   return (
     <div className="flex-1 flex flex-col grainy-bg min-h-screen">
-      <section className="relative pt-16 pb-12 px-6 md:px-20 overflow-hidden border-b border-primary/10">
+      <section className="relative pt-16 pb-12 px-4 sm:px-6 md:px-20 overflow-hidden border-b border-primary/10">
         <div className="scanline absolute inset-0 opacity-10"></div>
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="inline-block px-3 py-1 mb-4 bg-accent-red text-white text-[10px] font-black tracking-[0.3em] uppercase rounded-sm">
             Access Level: ARCHIVE_ADMIN
           </div>
-          <h1 className="text-slate-100 text-6xl md:text-9xl font-black leading-none tracking-tighter uppercase italic select-none">
+          <h1 className="text-slate-100 text-4xl sm:text-6xl md:text-9xl font-black leading-none tracking-tighter uppercase italic select-none">
             Add New<br />
             <span className="text-primary">Course</span>
           </h1>
@@ -18,13 +18,13 @@ const AddCourse = () => {
           </p>
         </div>
         <div className="absolute -right-20 -top-20 opacity-5 pointer-events-none">
-          <span className="material-symbols-outlined text-[300px] text-primary">add_circle</span>
+          <span className="material-symbols-outlined text-[300px] text-primary select-none">add_circle</span>
         </div>
       </section>
 
-      <div className="px-6 md:px-20 py-12">
+      <div className="px-4 sm:px-6 md:px-20 py-12">
         <div className="max-w-2xl mx-auto">
-          <div className="bg-background-dark border border-primary/20 rounded-lg p-8">
+          <div className="bg-background-dark border border-primary/20 rounded-lg p-4 sm:p-8">
             <h2 className="text-2xl font-black uppercase tracking-tight text-slate-100 mb-6">
               Course Details
             </h2>
@@ -35,7 +35,7 @@ const AddCourse = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none"
+                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none text-sm sm:text-base"
                   placeholder="Enter course title"
                 />
               </div>
@@ -44,16 +44,16 @@ const AddCourse = () => {
                   Description
                 </label>
                 <textarea
-                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none h-32 resize-none"
+                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none h-32 resize-none text-sm sm:text-base"
                   placeholder="Enter course description"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-bold uppercase tracking-widest text-primary mb-2">
                     Level
                   </label>
-                  <select className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none">
+                  <select className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none text-sm sm:text-base">
                     <option>BEGINNER</option>
                     <option>INTERMEDIATE</option>
                     <option>ADVANCED</option>
@@ -63,7 +63,7 @@ const AddCourse = () => {
                   <label className="block text-sm font-bold uppercase tracking-widest text-primary mb-2">
                     Category
                   </label>
-                  <select className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none">
+                  <select className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none text-sm sm:text-base">
                     <option>Backend</option>
                     <option>Low-Level</option>
                     <option>Security</option>
@@ -77,20 +77,20 @@ const AddCourse = () => {
                 </label>
                 <input
                   type="url"
-                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none"
+                  className="w-full px-4 py-3 bg-background-dark border border-primary/30 rounded-sm text-slate-100 font-medium focus:border-primary focus:outline-none text-sm sm:text-base"
                   placeholder="Enter image URL"
                 />
               </div>
               <div className="flex justify-end gap-4">
                 <button
                   type="button"
-                  className="px-6 py-3 border border-primary/30 text-primary font-black uppercase text-sm rounded-sm hover:bg-primary hover:text-background-dark transition-colors"
+                  className="px-4 py-2.5 sm:px-6 sm:py-3 border border-primary/30 text-primary font-black uppercase text-xs sm:text-sm rounded-sm hover:bg-primary hover:text-background-dark transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-primary text-background-dark font-black uppercase text-sm rounded-sm hover:bg-white transition-colors"
+                  className="px-4 py-2.5 sm:px-6 sm:py-3 bg-primary text-background-dark font-black uppercase text-xs sm:text-sm rounded-sm hover:bg-white transition-colors cursor-pointer"
                 >
                   Add Course
                 </button>

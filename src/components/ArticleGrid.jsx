@@ -24,9 +24,9 @@ const ArticleGrid = () => {
 
   return (
     <section>
-      <div className="flex items-center justify-between mb-8 border-b border-primary/20 pb-4">
-        <h3 className="text-3xl font-black uppercase tracking-tighter italic">Latest <span className="text-primary">Transmissions</span></h3>
-        <a className="text-xs font-bold uppercase tracking-widest text-primary hover:underline" href="#">View All Terminal Data</a>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 border-b border-primary/20 pb-4">
+        <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tighter italic">Latest <span className="text-primary">Transmissions</span></h3>
+        <a className="text-xs font-bold uppercase tracking-widest text-primary hover:underline self-start sm:self-auto" href="#">View All Terminal Data</a>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {articles.map((article, i) => (
