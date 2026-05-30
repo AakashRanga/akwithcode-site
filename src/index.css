@@ -23,7 +23,7 @@
 
 @layer utilities {
   .grain-overlay {
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9cAarwzuuD7FgUCbOuHxneTjJAw0-bMPFBFV7PBztj93dZnc-JSc-uP4TP6pVPkx91sxZP9r3XxCLvBfnGG_nzvJ6HpWZKEzPhAHcduetJjcbWTJQJi9pYrkg2wJ75TabTEWa6Q-RjLuGRzRU5RlC8cp4pE7MMnR_yjgA37G103xvBmNM8sH1KoX6ET1F1FGnaDHUxotWhMC7Ne9audBRnY8qts0cYRvNABEstfgH8o1In7zDinB9-F6emEc8icm1ACKa7FuENIw);
+    /* background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuD9cAarwzuuD7FgUCbOuHxneTjJAw0-bMPFBFV7PBztj93dZnc-JSc-uP4TP6pVPkx91sxZP9r3XxCLvBfnGG_nzvJ6HpWZKEzPhAHcduetJjcbWTJQJi9pYrkg2wJ75TabTEWa6Q-RjLuGRzRU5RlC8cp4pE7MMnR_yjgA37G103xvBmNM8sH1KoX6ET1F1FGnaDHUxotWhMC7Ne9audBRnY8qts0cYRvNABEstfgH8o1In7zDinB9-F6emEc8icm1ACKa7FuENIw); */
     opacity: 0.03;
     pointer-events: none;
   }
@@ -37,10 +37,10 @@
     clip-path: polygon(0% 0%, 95% 0%, 100% 50%, 95% 100%, 0% 100%);
   }
 
-  .grainy-bg {
+  /* .grainy-bg {
     background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDJRAxYuJeWgXL_sYjZGvS9-wwkuz4yczwl1LuS3MRSfKuHKjRgnKEZOJknajG_LwgWLLKgyXhIR-U1L7_rnyszWvhcgLyj_sEiWgdYixenWXYcYd1pjpdu7p7EFvI8HBCpfzndd_GiHxdlWxW7a7XiDYYmOuIUFhHOtE_dQRgfd5f_FFbFN17BPmtW9o9t6sjqj0Pk-l3qUm9o0dCC8v0e6MiHrwSfdPFWHl4SgIdtfry4bXi5wtQw8Z5eK9bZgeY8399X27i1XX4);
     background-repeat: repeat;
-  }
+  } */
 
   .glow-edge {
     box-shadow: 0 0 15px rgba(255, 106, 0, 0.2);
@@ -101,13 +101,25 @@
 
   /* Connect Page Animations */
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-15px);
+    }
   }
 
   @keyframes scanline-anim {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(200%); }
+    0% {
+      transform: translateY(-100%);
+    }
+
+    100% {
+      transform: translateY(200%);
+    }
   }
 
   .animate-float {
@@ -123,9 +135,19 @@
   }
 
   @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-8px); }
-    75% { transform: translateX(8px); }
+
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+
+    25% {
+      transform: translateX(-8px);
+    }
+
+    75% {
+      transform: translateX(8px);
+    }
   }
 
   .glow-input {
@@ -194,8 +216,13 @@
   }
 
   @keyframes scanline-move {
-    0% { top: 0; }
-    100% { top: 100%; }
+    0% {
+      top: 0;
+    }
+
+    100% {
+      top: 100%;
+    }
   }
 
   .terminal-border {
@@ -218,11 +245,11 @@
     box-shadow: 2px 2px 0 0 #bc1c1c;
   }
 
-  .grain-texture {
+  /* .grain-texture {
     background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBL0Quu9-YOLz3VvcmyLQNMHSKUFaznEA6_sTDc_h_J6NpETFqQAx_gGFir4zdIeLLmaCLetMYaJyszMDe-89ZnukKBf42YCxTFQ7-DqZdRXsjTyfknv2pSuqJcXpEouEcQWS-VAICTz1n-6NUmPZO8kYDlGumhloItWOOvUMbEijnKaT-_pIxhBg-NvdaGw4zsoQvHI3ivywLQXDBtl-c9boYuQQaRoYbtMITiq85yXWiQfZmQ_pbEfkz6UTXGzDpn0vbyQ_CFtwc);
     opacity: 0.1;
     pointer-events: none;
-  }
+  } */
 
   /* Custom Scrollbar for Chat */
   .custom-scrollbar::-webkit-scrollbar {
