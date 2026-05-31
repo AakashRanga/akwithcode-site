@@ -45,7 +45,7 @@ const AIChatbot = ({
     // const AGENT_API_URL =
     //     import.meta.env.VITE_AGENT_API_URL ||
     //     "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation/stream";
-    const AGENT_API_URL = "https://simon-killing-papua-including.trycloudflare.com/automation/stream";
+    const AGENT_API_URL = "https://hepatitis-eds-pot-wise.trycloudflare.com/automation/stream";
 
     // 15 minutes
     const REQUEST_TIMEOUT_MS = 900000;
