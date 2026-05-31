@@ -13,6 +13,8 @@ import Topics from './components/Topics';
 import Blog from './components/Blog';
 import Connect from './components/Connect';
 import BlogArticle from './components/BlogArticle';
+import TopicArticleList from './components/topic_article_list';
+import TopicArticle from './components/topic_article';
 import CourseCurriculum from './components/CourseCurriculum';
 import CourseLesson from './components/CourseLesson';
 import AddCourse from './components/AddCourse';
@@ -60,6 +62,8 @@ function App() {
           <Route path="/topics" element={<Topics />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog-articles" element={<BlogArticle />} />
+          <Route path="/topic-article-list" element={<TopicArticleList />} />
+          <Route path="/topic-article/:id" element={<TopicArticle />} />
           <Route path="/connect" element={<Connect />} />
         </Routes>
 
