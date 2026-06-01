@@ -39,13 +39,14 @@ const AIChatbot = ({
     // CONFIG
     // ===============================
 
-    // Put this in .env
-    // VITE_AGENT_API_URL=https://your-url.trycloudflare.com/automation/stream
+    // Put this in .env or override with a runtime env var
+    // VITE_AGENT_API_URL=http://localhost:1002/automation/stream
+    // VITE_API_BASE_URL=http://localhost:1002
 
-    // const AGENT_API_URL =
-    //     import.meta.env.VITE_AGENT_API_URL ||
-    //     "https://diy-ongoing-chess-cartridges.trycloudflare.com/automation/stream";
-    const AGENT_API_URL = "https://hepatitis-eds-pot-wise.trycloudflare.com/automation/stream";
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:1002";
+    const AGENT_API_URL =
+        import.meta.env.VITE_AGENT_API_URL ||
+        `${API_BASE_URL}/automation/stream`;
 
     // 15 minutes
     const REQUEST_TIMEOUT_MS = 900000;

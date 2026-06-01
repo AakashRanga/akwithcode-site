@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:1002';
+
 const Topics = () => {
   const [topics, setTopics] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,7 @@ const Topics = () => {
 
   const fetchTopics = async () => {
     try {
-      const response = await fetch('http://localhost:1002/automation/topics');
+      const response = await fetch(`${API_BASE}/automation/topics`);
       if (!response.ok) throw new Error('Failed to fetch topics');
       const data = await response.json();
       setTopics(data);

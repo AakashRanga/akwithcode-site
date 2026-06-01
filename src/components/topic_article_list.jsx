@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
-const API_BASE = 'http://localhost:1002/automation/blogs';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:1002';
+const API_BASE = `${API_BASE_URL}/automation/blogs`;
+const TOPICS_URL = `${API_BASE_URL}/automation/topics`;
 
 const TopicArticleList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -23,7 +25,7 @@ const TopicArticleList = () => {
 
   const fetchTopics = async () => {
     try {
-      const response = await fetch('http://localhost:1002/automation/topics');
+      const response = await fetch(TOPICS_URL);
       if (!response.ok) throw new Error('Failed to fetch topics');
       const data = await response.json();
       setTopics(['All', ...data.map(t => t.topic)]);
@@ -76,58 +78,8 @@ const TopicArticleList = () => {
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
       }}></div>
 
-      {/* TopNavBar */}
-      <nav className="bg-stone-950/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 border-b border-orange-500/10 shadow-[0_0_20px_rgba(255,106,0,0.1)]">
-        <div className="flex justify-between items-center w-full px-4 sm:px-6 py-4 max-w-screen-2xl mx-auto">
-          <Link to="/" className="text-xl sm:text-2xl font-black italic tracking-tighter text-orange-500">KINETIC_MONO</Link>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-4 lg:gap-8">
-            <Link to="/" className="text-stone-400 font-['Space_Grotesk'] font-black uppercase tracking-tighter italic hover:text-orange-400 transition-all duration-300">HOME</Link>
-            <Link to="/topics" className="text-orange-500 border-b-2 border-orange-500 pb-1 font-['Space_Grotesk'] font-black uppercase tracking-tighter italic hover:text-orange-400 transition-all duration-300">TOPICS</Link>
-            <Link to="/topic-article-list" className="text-stone-400 font-['Space_Grotesk'] font-black uppercase tracking-tighter italic hover:text-orange-400 transition-all duration-300">ARTICLES</Link>
-            <Link to="/connect" className="text-stone-400 font-['Space_Grotesk'] font-black uppercase tracking-tighter italic hover:text-orange-400 transition-all duration-300">CONTACT</Link>
-          </div>
-
-          <div className="flex items-center gap-2 sm:gap-4">
-            <Link to="/connect" className="bg-primary text-black px-3 sm:px-4 py-2 font-black uppercase tracking-tighter italic scale-95 active:scale-90 transition-transform rounded-lg text-xs sm:text-sm">
-              CONTACT_US
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[870px] flex items-center justify-center overflow-hidden px-4 sm:px-6">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-b from-stone-950/80 via-surface-container-low to-surface-container-low z-10"></div>
-            <img
-              alt="Glitchy charts background"
-              className="w-full h-full object-cover opacity-30 mix-blend-overlay grayscale"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjxrwjyV_rvDCN20EE60myJNENEhEEzg6Zok-ZTBETZqETtAsG0YOyQz9un7wlZU0XuMZd2OYStW7e59u8ZsOBXNDK6GHJxzEXS9FtJ3oAgmbWvxVrgcAYwvENPXObdkkTYWRHON-ydQwbVlyHYe72oiClJrDG6ENKI57ZuUWqHP16kBYvoQ9nen-io_pFV5N_FCLfCJEfHjdgzNwcTRCgtb49MtCXXLGWxp7eOVgVEeP82sCksZs-71_s3u2cUFAdW1cH0OqS_LE"
-            />
-          </div>
-          <div className="relative z-20 text-center max-w-6xl">
-            <div className="inline-block px-4 py-1 mb-4 sm:mb-6 bg-primary text-on-primary font-black text-[10px] tracking-[0.2em] uppercase" style={{ transform: 'rotate(-3deg)' }}>
-              PROTOCOL_V.1.0 // GROWTH_CORE
-            </div>
-            <h1 className="text-[clamp(2rem,8vw,8rem)] leading-[0.9] font-black italic tracking-tighter uppercase mb-4 sm:mb-8 text-on-background">
-              KINETIC <span className="text-primary">GROWTH</span> STRATEGIES
-            </h1>
-            <p className="max-w-2xl mx-auto text-on-surface-variant text-base sm:text-lg md:text-xl font-light leading-relaxed mb-6 sm:mb-10">
-              High-performance digital engineering for market dominance. We treat growth as an architectural challenge, not a creative whim.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-              <button className="bg-primary text-on-primary px-6 sm:px-10 py-3 sm:py-4 font-black uppercase tracking-tighter italic rounded-lg hover:shadow-[0_0_20px_rgba(255,106,0,0.4)] transition-all duration-300">
-                INITIALIZE_CONSULTATION
-              </button>
-              <button className="border border-orange-500/30 text-orange-500 px-6 sm:px-10 py-3 sm:py-4 font-black uppercase tracking-tighter italic rounded-lg hover:bg-orange-500/10 transition-all">
-                VIEW_DATA_REPORTS
-              </button>
-            </div>
-          </div>
-        </section>
+      
 
         {/* Product Details / Services - Dynamic Topics */}
         <section className="py-12 sm:py-24 px-4 sm:px-6 max-w-screen-2xl mx-auto">
@@ -273,21 +225,7 @@ const TopicArticleList = () => {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-stone-950 w-full py-8 sm:py-12 mt-12 sm:mt-20 border-t border-orange-500/20">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-6 sm:gap-8">
-          <div className="text-orange-500 font-black italic tracking-tighter text-lg sm:text-xl">KINETIC_MONO</div>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-            <Link className="text-stone-500 font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-widest hover:text-orange-400 transition-colors" to="/">DOCUMENTATION</Link>
-            <Link className="text-stone-500 font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-widest hover:text-orange-400 transition-colors" to="/">API_ACCESS</Link>
-            <Link className="text-stone-500 font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-widest hover:text-orange-400 transition-colors" to="/">PRIVACY_LOG</Link>
-            <Link className="text-stone-500 font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-widest hover:text-orange-400 transition-colors" to="/">RESOURCES</Link>
-          </div>
-          <div className="text-stone-500 font-['Space_Grotesk'] text-[10px] font-black uppercase tracking-widest">
-            ©2024 KINETIC_MONO_CORE. PROTOCOL_V.1.0
-          </div>
-        </div>
-      </footer>
+      
 
       {/* BottomNavBar (Mobile Only) */}
       <nav className="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-stone-950 px-2 shadow-[0_-4px_20px_rgba(255,106,0,0.15)] border-t border-orange-500/20">

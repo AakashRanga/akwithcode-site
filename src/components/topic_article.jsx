@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-const API_BASE = 'http://localhost:1002/automation/blog';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:1002';
+const API_BASE = `${API_BASE_URL}/automation/blogs`;
 
 const TopicArticle = () => {
   const { id } = useParams();
@@ -19,7 +20,7 @@ const TopicArticle = () => {
     try {
       setLoading(true);
       // First get all blogs and find by ID
-      const response = await fetch('http://localhost:1002/automation/blogs');
+      const response = await fetch(API_BASE);
       if (!response.ok) throw new Error('Failed to fetch blogs');
 
       const data = await response.json();
@@ -37,7 +38,7 @@ const TopicArticle = () => {
 
   const fetchRelatedBlogs = async () => {
     try {
-      const response = await fetch('http://localhost:1002/automation/blogs');
+      const response = await fetch(API_BASE);
       if (!response.ok) return;
 
       const data = await response.json();
@@ -102,35 +103,6 @@ const TopicArticle = () => {
 
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-primary/20 px-4 sm:px-6 lg:px-20 py-4">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-4 sm:gap-8">
-            <div className="flex items-center gap-2 sm:gap-3 text-primary">
-              <div className="size-6 sm:size-8 flex items-center justify-center bg-primary text-black rounded-sm">
-                <span className="material-symbols-outlined font-bold text-sm sm:text-base">terminal</span>
-              </div>
-              <h2 className="text-base sm:text-xl font-bold tracking-tighter uppercase italic">AK WITH CODE</h2>
-            </div>
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-              <Link className="text-slate-400 hover:text-primary transition-colors text-xs sm:text-sm font-bold uppercase tracking-widest" to="/">Home</Link>
-              <Link className="text-slate-400 hover:text-primary transition-colors text-xs sm:text-sm font-bold uppercase tracking-widest" to="/courses">Courses</Link>
-              <Link className="text-slate-400 hover:text-primary transition-colors text-xs sm:text-sm font-bold uppercase tracking-widest" to="/topics">Topics</Link>
-              <Link className="text-primary text-xs sm:text-sm font-bold uppercase tracking-widest border-b-2 border-primary" to="/topic-article-list">Blog</Link>
-            </nav>
-          </div>
-          <div className="flex items-center gap-4 sm:gap-6">
-            <div className="hidden sm:flex items-center bg-zinc-900 border border-zinc-800 rounded-full px-3 sm:px-4 py-1.5">
-              <span className="material-symbols-outlined text-zinc-500 text-sm">search</span>
-              <input className="bg-transparent border-none focus:ring-0 text-xs font-bold tracking-widest placeholder:text-zinc-600 w-24 sm:w-32" placeholder="SEARCH ARCHIVES..." type="text"/>
-            </div>
-            <div className="size-8 sm:size-10 rounded-full border-2 border-primary p-0.5">
-              <img className="w-full h-full rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCwRhpgnCUC_t-xXizfeZ-g-CA86aZz7wk24FxztN6dgJ1lMlfeYBXEeOrPdtKD_BC_cBih1Ik88ZYoOCmzOu29K7mMsu8XepZ1pZK0r-qnPZa8wfSIrWdTLRMIOKpXgnkb75_5evyhhe-vNt4zNQNon2gsjjFC3bpHHTNrZTdS43oDQn27MElH0OmZxM8kC4lL42-6a78ReXLULawiHRXPis8WF_ySRPfMrCeFLgBp--erHPHuIsy-XiSNY2uO4djIJZNUTLHxzQ" alt="User profile"/>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="relative w-full pt-8 sm:pt-12 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-20 overflow-hidden">
         <div className="max-w-7xl mx-auto">
@@ -138,7 +110,7 @@ const TopicArticle = () => {
           <div className="flex items-center gap-2 mb-6 sm:mb-8 uppercase text-[10px] font-black tracking-[0.2em] text-zinc-500">
             <Link className="hover:text-primary transition-colors" to="/">Home</Link>
             <span className="text-primary">/</span>
-            <Link className="hover:text-primary transition-colors" to="/topic-article-list">Blog</Link>
+            <Link className="hover:text-primary transition-colors" to="/topic-article-list">Topics</Link>
             <span className="text-primary">/</span>
             <span className="text-zinc-300">{blog.topic || 'Backend Engineering'}</span>
           </div>
